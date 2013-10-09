@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Jogada.h>
 
 typedef enum JogadorEnum
 {
@@ -16,6 +17,17 @@ typedef enum JogadorEnum
     JogadorD
 }JogadorEnum;
 
+typedef enum AcaoEnum
+{
+    Jogar = 0,
+    Trucar,
+    Correr,
+    Aceitar,
+    Aumentar
+}AcaoEnum;
+
 @interface Jogador : NSObject
+
+-(int)getAcaoJogada:(Jogada *) jogada;
 
 @end
