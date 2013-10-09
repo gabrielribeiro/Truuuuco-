@@ -10,7 +10,7 @@
 
 @implementation Carta
 
--(id)init:(enum ValorCarta)valor eNaipe:(enum NaipeCarta)naipe
+-(id)initWithValor:(enum ValorCarta)valor andNaipe:(enum NaipeCarta)naipe
 {
     self = [super init];
     if(self) {
