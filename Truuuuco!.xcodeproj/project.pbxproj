@@ -19,6 +19,7 @@
 		793E27DC18057C0500FC0AE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 793E27C418057C0500FC0AE4 /* UIKit.framework */; };
 		793E27E418057C0500FC0AE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 793E27E218057C0500FC0AE4 /* InfoPlist.strings */; };
 		793E27E618057C0500FC0AE4 /* Truuuuco_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 793E27E518057C0500FC0AE4 /* Truuuuco_Tests.m */; };
+		7A6B18B918057EEF00D28343 /* Carta.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6B18B818057EEF00D28343 /* Carta.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		793E27E118057C0500FC0AE4 /* Truuuuco!Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Truuuuco!Tests-Info.plist"; sourceTree = "<group>"; };
 		793E27E318057C0500FC0AE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		793E27E518057C0500FC0AE4 /* Truuuuco_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Truuuuco_Tests.m; sourceTree = "<group>"; };
+		7A6B18B718057EEF00D28343 /* Carta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Carta.h; sourceTree = "<group>"; };
+		7A6B18B818057EEF00D28343 /* Carta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Carta.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				793E27D018057C0500FC0AE4 /* AppDelegate.m */,
 				793E27D218057C0500FC0AE4 /* Images.xcassets */,
 				793E27C718057C0500FC0AE4 /* Supporting Files */,
+				7A6B18B718057EEF00D28343 /* Carta.h */,
+				7A6B18B818057EEF00D28343 /* Carta.m */,
 			);
 			path = "Truuuuco!";
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A6B18B918057EEF00D28343 /* Carta.m in Sources */,
 				793E27D118057C0500FC0AE4 /* AppDelegate.m in Sources */,
 				793E27CD18057C0500FC0AE4 /* main.m in Sources */,
 			);
@@ -443,6 +449,7 @@
 				793E27EB18057C0500FC0AE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		793E27EC18057C0500FC0AE4 /* Build configuration list for PBXNativeTarget "Truuuuco!Tests" */ = {
 			isa = XCConfigurationList;
@@ -451,6 +458,7 @@
 				793E27EE18057C0500FC0AE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
