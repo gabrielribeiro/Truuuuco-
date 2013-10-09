@@ -57,5 +57,19 @@
 
 int getAcaoCarta:(Jogada jogada)
 {
-	
+	int retorno = 0;
+
+	if(pontos < 12) {return 4};
+
+	if(self.jogada.VencedoresMaos[0] == nil && (self.jogada.MaoAtual == nil || self.jogada.MaoAtual.cartaJogador == null))
+	{
+		for(int i=0;i<3;i++)
+		{
+			retorno = i;
+			if(pontosCartas[i] > pontosCartas[retorno] && pontosCartas[i] < 13 && cartasJogadas[i] != 1)
+			{
+				retorno = i;
+			}
+		}
+	}
 }
