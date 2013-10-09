@@ -7,9 +7,10 @@
 //
 
 #import "Jogo.h"
+#include "Baralho.h"
 
 @interface Jogo () {
-    //Baralho baralho;
+    Baralho *baralho;
 }
 
 @end

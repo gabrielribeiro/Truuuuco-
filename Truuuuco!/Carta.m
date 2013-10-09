@@ -33,4 +33,31 @@
     
     return self.valor;
 }
+
++(NSArray *)getNaipes
+{
+    NSMutableArray *naipes = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 4; i++) {
+        
+        enum NaipeCarta naipe = i+1;
+        [naipes addObject:[NSNumber numberWithInt:naipe]];
+    }
+    
+    return naipes;
+}
+
++(NSArray *)getValores
+{
+    NSMutableArray *valores = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 10; i++) {
+        
+        enum NaipeCarta naipe = i+1;
+        [valores addObject:[NSNumber numberWithInt:naipe]];
+    }
+    
+    return valores;
+}
+
 @end

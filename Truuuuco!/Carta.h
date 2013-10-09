@@ -39,4 +39,7 @@ typedef enum ValorCarta
 -(id)initWithValor:(ValorCarta)valor andNaipe:(NaipeCarta)naipe;
 -(int)getPontuacao:(Carta *)vira;
 
++(NSArray *)getValores;
++(NSArray *)getNaipes;
+
 @end
