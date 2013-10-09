@@ -10,25 +10,25 @@
 
 typedef enum NaipeCarta
 {
-    Ouros = 11,
-    Espadas = 12,
-    Copas = 13,
-    Paus = 14
+    NaipeCartaOuros = 11,
+    NaipeCartaEspadas = 12,
+    NaipeCartaCopas = 13,
+    NaipeCartaPaus = 14
     
 }NaipeCarta;
 
 typedef enum ValorCarta
 {
-    Quatro = 1,
-    Cinco,
-    Seis,
-    Sete,
-    Damas,
-    Valete,
-    Reis,
-    As,
-    Dois,
-    Tres
+    ValorCartaQuatro = 1,
+    ValorCartaCinco,
+    ValorCartaSeis,
+    ValorCartaSete,
+    ValorCartaDamas,
+    ValorCartaValete,
+    ValorCartaReis,
+    ValorCartaAs,
+    ValorCartaDois,
+    ValorCartaTres
 }ValorCarta;
 
 @interface Carta : NSObject
