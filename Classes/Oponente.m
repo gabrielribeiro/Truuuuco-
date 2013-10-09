@@ -71,5 +71,23 @@ int getAcaoCarta:(Jogada jogada)
 				retorno = i;
 			}
 		}
+		cartasJogadas[retorno] = 1;
+		return retorno;
 	}
+
+	if(self.jogada.VencedoresMaos[0] == [JogadoresEnum OPONENTE] && jogada.VencedoresMaos[1] == null )
+	{
+		if(pontos > 15) return 3;
+		for(int i=0;i<3;i++)
+		{
+			if(cartasJogadas[i] != 1)
+			{
+				retorno = i;
+				if(pontosCartas[i] > pontosCartas[retorno] && cartasJogadas[i] !=1) retorno = i;
+			}
+		}
+		cartasJogadas[retorno] = 1;
+		return retorno;
+	}
+
 }
