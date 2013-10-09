@@ -34,11 +34,9 @@ typedef enum ValorCarta
 @interface Carta : NSObject
 
 @property enum NaipeCarta naipe;
-
 @property enum ValorCarta valor;
 
+-(id)initWithValor:(ValorCarta)valor andNaipe:(NaipeCarta)naipe;
 -(int)getPontuacao:(Carta *)vira;
-
--(id)initWithValor:(enum ValorCarta)valor andNaipe:(enum NaipeCarta)naipe;
 
 @end
