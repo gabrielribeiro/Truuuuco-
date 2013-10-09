@@ -10,7 +10,7 @@
 
 @implementation Jogada
 
-- (instancetype)initWithBaralho;
+-(instancetype)initWithBaralho:(Baralho*)baralho
 {
     self = [super init];
     if (self) {

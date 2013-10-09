@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Jogada.h>
+#import "Jogada.h"
 
 typedef enum JogadorEnum
 {
@@ -16,6 +16,12 @@ typedef enum JogadorEnum
     JogadorC,
     JogadorD
 }JogadorEnum;
+
+typedef enum TimeEnum
+{
+    TimeA,
+    TimeB
+}TimeEnum;
 
 typedef enum AcaoEnum
 {
