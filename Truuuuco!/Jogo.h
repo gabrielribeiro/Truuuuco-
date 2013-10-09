@@ -8,12 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@class Jogada;
+#include "Jogada.h"
+
+typedef enum Jogador
+{
+    JogadorA,
+    JogadorB,
+    JogadorC,
+    JogadorD
+}Jogador;
 
 @interface Jogo : NSObject
 
 @property (nonatomic,assign) NSUInteger pontuacaoTimeA;
 @property (nonatomic,assign) NSUInteger pontuacaoTimeB;
+@property (nonatomic,assign) Jogador proximoJogador;
 @property (nonatomic,assign,getter = isFinalizado) bool finalizado;
 
 -(void)atualizarPlacar:(Jogada*)jogada;

@@ -10,4 +10,6 @@
 
 @interface Jogada : NSObject
 
+-(instancetype)initWithBaralho;
+
 @end

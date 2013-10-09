@@ -10,4 +10,13 @@
 
 @implementation Jogada
 
+- (instancetype)initWithBaralho;
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
 @end

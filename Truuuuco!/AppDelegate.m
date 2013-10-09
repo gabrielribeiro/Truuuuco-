@@ -20,15 +20,12 @@
     
     Jogo *jogo = [[Jogo alloc] init];
     
-    /*
-    JogadoresEnum proximo = JogadoresEnum.JOGADOR;
-    
-    Jogador jogador = new Jogador();
-    Oponente oponente = new Oponente();
+    jogo.proximoJogador = JogadorA;
     
     do{
-        Jogada jogada = jogo.NovaJogada();
+        Jogada *jogada = [[Jogada alloc] initWithBaralho];
         
+        /*
         //Primeira Mão
         jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
         
@@ -47,8 +44,8 @@
             jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
         
         jogo.AtualizaPlacar(jogada);
-    }while (!jogo.Acabou());
-    */
+         */
+    }while (!jogo.isFinalizado);
     
     return YES;
 }
