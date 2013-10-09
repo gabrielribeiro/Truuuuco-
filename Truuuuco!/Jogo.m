@@ -9,13 +9,16 @@
 #import "Jogo.h"
 #include "Baralho.h"
 
-@interface Jogo () {
-    Baralho *baralho;
-}
-
-@end
-
 @implementation Jogo
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
 
 -(bool)isFinalizado
 {

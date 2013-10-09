@@ -12,7 +12,7 @@
 #include "Jogador.h"
 
 typedef enum AcaoTruco{
-    AcaoTrucoTrucar,
+    AcaoTrucoTrucar = 0,
     AcaoTrucoAceitar,
     AcaoTrucoFugir
 }AcaoTruco;

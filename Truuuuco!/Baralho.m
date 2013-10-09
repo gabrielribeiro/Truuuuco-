@@ -21,10 +21,8 @@
         NSArray *naipes = [Carta getNaipes];
         NSArray *valores = [Carta getValores];
         
-        for (NSNumber *naipe in naipes)
-        {
-            for(NSNumber *valor in valores)
-            {
+        for (NSNumber *naipe in naipes) {
+            for(NSNumber *valor in valores) {
                 Carta *carta = [[Carta alloc] initWithValor:valor.intValue andNaipe:naipe.intValue];
                 [cartas addObject:carta];
             }
@@ -49,10 +47,9 @@
     }
 }
 
--(Carta *)getCarta
+-(Carta*)getCarta
 {
-    if(cartaAtual < [cartas count])
-    {
+    if(cartaAtual < [cartas count]) {
         Carta * carta = cartas[cartaAtual];
         cartaAtual ++;
         return carta;

@@ -39,8 +39,7 @@
     NSMutableArray *naipes = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 4; i++) {
-        
-        enum NaipeCarta naipe = i+1;
+        NaipeCarta naipe = i+1;
         [naipes addObject:[NSNumber numberWithInt:naipe]];
     }
     
@@ -52,8 +51,7 @@
     NSMutableArray *valores = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 10; i++) {
-        
-        enum NaipeCarta naipe = i+1;
+        NaipeCarta naipe = i+1;
         [valores addObject:[NSNumber numberWithInt:naipe]];
     }
     

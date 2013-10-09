@@ -16,6 +16,7 @@
 @property (nonatomic,assign) NSUInteger pontuacaoTimeA;
 @property (nonatomic,assign) NSUInteger pontuacaoTimeB;
 @property (nonatomic,assign) JogadorEnum proximoJogador;
+@property (nonatomic,strong) Baralho *baralho;
 @property (nonatomic,assign,getter = isFinalizado) bool finalizado;
 
 -(void)atualizarPlacar:(Jogada*)jogada;

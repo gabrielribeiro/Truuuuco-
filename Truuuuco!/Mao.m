@@ -45,4 +45,36 @@
     }
 }
 
+-(TimeEnum)timeVendedor
+{
+    int fujao = [self alguemCorreu];
+    
+    if(fujao > 0) {
+        switch (fujao) {
+            case JogadorA:
+            case JogadorB:
+                return TimeA;
+                break;
+            case JogadorC:
+            case JogadorD:
+                return TimeB;
+                break;
+        }
+    }
+    
+    return TimeA;
+}
+
+-(JogadorEnum)alguemCorreu
+{
+    for (NSNumber *acaoNumber in self.acoesDosJogadores) {
+        if(acaoNumber.intValue == AcaoTrucoFugir) {
+            NSNumber *jogadorNumber = [self.acoesDosJogadores objectForKey:acaoNumber];
+            return jogadorNumber.intValue;
+        }
+    }
+    
+    return 0;
+}
+
 @end

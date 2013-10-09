@@ -23,7 +23,7 @@
     jogo.proximoJogador = JogadorA;
     
     do{
-        Jogada *jogada = [[Jogada alloc] initWithBaralho];
+        Jogada *jogada = [[Jogada alloc] initWithBaralho:jogo.baralho];
         
         /*
         //Primeira Mão

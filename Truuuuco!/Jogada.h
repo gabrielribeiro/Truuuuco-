@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Baralho.h"
 
 @interface Jogada : NSObject
 
--(instancetype)initWithBaralho;
+-(instancetype)initWithBaralho:(Baralho*)baralho;
 
 @end
