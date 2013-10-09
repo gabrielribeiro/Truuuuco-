@@ -43,8 +43,10 @@
         if(!jogada.MaoAtual.Empachou)
             jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
         
-        jogo.AtualizaPlacar(jogada);
          */
+        
+        [jogo atualizarPlacar:jogada];
+        
     }while (!jogo.isFinalizado);
     
     return YES;
