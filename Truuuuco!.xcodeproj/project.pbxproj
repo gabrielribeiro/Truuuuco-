@@ -22,6 +22,7 @@
 		79E0472B18058A780076962D /* Jogada.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0472818058A780076962D /* Jogada.m */; };
 		79E0472C18058A780076962D /* Jogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0472A18058A780076962D /* Jogo.m */; };
 		79E0472F180591D70076962D /* Mao.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0472E180591D70076962D /* Mao.m */; };
+		79E047341805956A0076962D /* Jogador.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E047331805956A0076962D /* Jogador.m */; };
 		7A6B18B918057EEF00D28343 /* Carta.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6B18B818057EEF00D28343 /* Carta.m */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,8 @@
 		79E0472A18058A780076962D /* Jogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jogo.m; sourceTree = "<group>"; };
 		79E0472D180591D70076962D /* Mao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mao.h; sourceTree = "<group>"; };
 		79E0472E180591D70076962D /* Mao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mao.m; sourceTree = "<group>"; };
+		79E04730180595400076962D /* Jogador.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jogador.h; sourceTree = "<group>"; };
+		79E047331805956A0076962D /* Jogador.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jogador.m; sourceTree = "<group>"; };
 		7A6B18B718057EEF00D28343 /* Carta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Carta.h; sourceTree = "<group>"; };
 		7A6B18B818057EEF00D28343 /* Carta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Carta.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +134,8 @@
 				79E0472A18058A780076962D /* Jogo.m */,
 				79E0472D180591D70076962D /* Mao.h */,
 				79E0472E180591D70076962D /* Mao.m */,
+				79E04730180595400076962D /* Jogador.h */,
+				79E047331805956A0076962D /* Jogador.m */,
 			);
 			path = "Truuuuco!";
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 				7A6B18B918057EEF00D28343 /* Carta.m in Sources */,
 				79E0472B18058A780076962D /* Jogada.m in Sources */,
 				79E0472F180591D70076962D /* Mao.m in Sources */,
+				79E047341805956A0076962D /* Jogador.m in Sources */,
 				793E27D118057C0500FC0AE4 /* AppDelegate.m in Sources */,
 				793E27CD18057C0500FC0AE4 /* main.m in Sources */,
 			);

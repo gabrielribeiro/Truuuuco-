@@ -14,12 +14,11 @@
 {
     self = [super init];
     if (self) {
-        //acaoOponente = null
-        //acaoJogador = acaoOponente;
-        //cartaOponente = null;
-        //cartaJogador = cartaOponente;
         self.trucoPedido = false;
-        self.vira = vira;
+        self.vira        = vira;
+        
+        self.acoesDosJogadores = [[NSMutableDictionary alloc] init];
+        self.cartasJogadas     = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -29,10 +28,13 @@
     return self.trucoPedido;
 }
 
--(void)addAcao:(AcaoTruco)acao forJogador:(NSObject*)jogador withCarta:(Carta*)carta
+-(void)addAcao:(AcaoTruco)acao forJogador:(JogadorEnum)jogador withCarta:(Carta*)carta
 {
-	//self.acaoJogador = acao;
-	//self.cartaJogador = carta;
+	[self.acoesDosJogadores setObject:[NSNumber numberWithInt:acao]
+                               forKey:[NSNumber numberWithInt:jogador]];
+    
+	[self.cartasJogadas setObject:carta
+                           forKey:[NSNumber numberWithInt:jogador]];
     
     if(acao == AcaoTrucoTrucar) {
         self.trucoPedido = YES;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #include "Carta.h"
+#include "Jogador.h"
 
 typedef enum AcaoTruco{
     AcaoTrucoTrucar,
@@ -20,8 +21,12 @@ typedef enum AcaoTruco{
 
 @property (nonatomic,strong) Carta *vira;
 @property (nonatomic,assign,getter = isTrucoPedido) bool trucoPedido;
+@property (nonatomic,assign,getter = isEmpachado) bool empachado;
+
+@property (nonatomic,strong) NSMutableDictionary *acoesDosJogadores;
+@property (nonatomic,strong) NSMutableDictionary *cartasJogadas;
 
 -(instancetype) initWithVira:(Carta*)vira;
--(void)addAcao:(AcaoTruco)acao forJogador:(NSObject*)jogador withCarta:(Carta*)carta;
+-(void)addAcao:(AcaoTruco)acao forJogador:(JogadorEnum)jogador withCarta:(Carta*)carta;
 
 @end
