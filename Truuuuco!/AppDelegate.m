@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#include "Jogo.h"
 
 @implementation AppDelegate
 
@@ -16,6 +17,39 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    Jogo *jogo = [[Jogo alloc] init];
+    
+    /*
+    JogadoresEnum proximo = JogadoresEnum.JOGADOR;
+    
+    Jogador jogador = new Jogador();
+    Oponente oponente = new Oponente();
+    
+    do{
+        Jogada jogada = jogo.NovaJogada();
+        
+        //Primeira Mão
+        jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
+        
+        if(jogada.MaoAtual.vencedor != null)
+            proximo = jogada.MaoAtual.vencedor;
+        
+        //Segunda Mão
+        jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
+        
+        if(jogada.VencedoresMaos[0] == jogada.VencedoresMaos[1]){
+            jogo.AtualizaPlacar(jogada);
+            continue;
+        }
+        
+        if(!jogada.MaoAtual.Empachou)
+            jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
+        
+        jogo.AtualizaPlacar(jogada);
+    }while (!jogo.Acabou());
+    */
+    
     return YES;
 }
 
