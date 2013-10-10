@@ -15,30 +15,12 @@
 {
     self = [super init];
     if (self) {
-        self.trucoPedido = NO;
         self.vira = vira;
         
         self.acoesDosJogadores = [[NSMutableDictionary alloc] init];
         self.cartasJogadas     = [[NSMutableDictionary alloc] init];
     }
     return self;
-}
-
--(void)addAcao:(AcaoTruco)acao forJogador:(int)jogador withCarta:(Carta*)carta
-{
-	[self.acoesDosJogadores setObject:[NSNumber numberWithInt:acao]
-                               forKey:[NSNumber numberWithInt:jogador]];
-    
-	[self.cartasJogadas setObject:carta
-                           forKey:[NSNumber numberWithInt:jogador]];
-    
-    if(acao == AcaoTrucoTrucar) {
-        self.trucoPedido = YES;
-    }
-    
-    if(acao == AcaoTrucoAceitar) {
-        self.trucoPedido = NO;
-    }
 }
 
 -(TimeEnum)definirVencedor{
@@ -66,6 +48,8 @@
         if([cartaJogada getPontuacao:self.vira] > maiorPontuacaoDeCartaJogada){
             maiorPontuacaoDeCartaJogada = [cartaJogada getPontuacao:self.vira];
             jogadorComMaiorCarta = jogadorNumber.integerValue;
+        } else if([cartaJogada getPontuacao:self.vira] == maiorPontuacaoDeCartaJogada) {
+            //TODO: Verificar Empachamento
         }
     }
     

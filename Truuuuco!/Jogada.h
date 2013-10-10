@@ -24,6 +24,7 @@ typedef enum ValorJogada{
 
 @property (nonatomic,strong) Carta *vira;
 @property (nonatomic,assign) ValorJogada valorJogada;
+@property (nonatomic,assign) int trucante;
 @property Mao *maoAtual;
 
 -(instancetype)initWithBaralho:(Baralho*)pBaralho;

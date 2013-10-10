@@ -51,7 +51,7 @@ static const int NUM_CARDS = 3;
         NSLog(@"===PRIMEIRA MÃO===");
         
         //Primeira Mão
-        [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        TimeEnum vencedorMao1 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
         
         //if(jogada.maoAtual.vencedor != nil)
             //proximo = jogada.maoAtual.vencedor;
@@ -59,18 +59,15 @@ static const int NUM_CARDS = 3;
         NSLog(@"===SEGUNDA MÃO===");
         
         //Segunda Mão
-        [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        TimeEnum vencedorMao2 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
         
-        /*
-        if(jogada.VencedoresMaos[0] == jogada.VencedoresMaos[1]){
-            jogo.AtualizaPlacar(jogada);
+        if(vencedorMao1 == vencedorMao2){
+            [jogo atualizarPlacar:jogada];
             continue;
         }
         
-        if(!jogada.MaoAtual.Empachou)
+        if(!jogada.maoAtual.empatado)
             [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
-        
-         */
         
         [jogo atualizarPlacar:jogada];
         

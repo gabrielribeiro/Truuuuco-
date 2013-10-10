@@ -16,12 +16,15 @@
     self = [super init];
     if (self) {
         self.vira = [pBaralho getCarta];
+        self.trucante = -1;
         baralho = pBaralho;
     }
     return self;
 }
 
 -(int)jogarMao:(int)proximo andJogadores:(NSMutableArray*)jogadores{
+    self.maoAtual = [[Mao alloc] initWithVira:self.vira];
+    
     int cont = 0;
     
     do {

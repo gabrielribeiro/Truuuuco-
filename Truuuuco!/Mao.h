@@ -24,8 +24,7 @@ typedef enum TimeEnum
 
 @interface Mao : NSObject
 
-@property (nonatomic,assign,getter = isTrucoPedido) bool trucoPedido;
-@property (nonatomic,assign,getter = isEmpachado) bool empachado;
+@property (nonatomic,assign,getter = isEmpatado) bool empatado;
 
 @property (nonatomic,strong) Carta *vira;
 
@@ -35,6 +34,5 @@ typedef enum TimeEnum
 @property (nonatomic,assign,readonly,getter = definirVencedor) TimeEnum vencedor;
 
 -(id) initWithVira:(Carta*)vira;
--(void)addAcao:(AcaoTruco)acao forJogador:(int)jogador withCarta:(Carta*)carta;
 
 @end
