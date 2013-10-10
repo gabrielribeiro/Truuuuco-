@@ -19,7 +19,7 @@ typedef enum JogadorEnum
 
 typedef enum TimeEnum
 {
-    TimeA,
+    TimeA = 0,
     TimeB
 }TimeEnum;
 
@@ -36,7 +36,7 @@ typedef enum AcaoEnum
 
 @property (nonatomic,strong) NSMutableArray *cartas;
 
--(AcaoEnum)getAcaoJogada:(Jogada *) jogada;
--(void)receberCartas:(NSArray*)cartas;
+-(AcaoEnum)getAcaoJogada:(Jogada*) jogada;
+-(void)receberCartas:(Carta*)carta;
 
 @end

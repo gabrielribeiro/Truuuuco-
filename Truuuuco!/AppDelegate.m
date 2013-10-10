@@ -11,6 +11,8 @@
 
 @implementation AppDelegate
 
+static const int NUM_CARDS = 3;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -20,10 +22,23 @@
     
     Jogo *jogo = [[Jogo alloc] init];
     
+    //Jogador *jogadorA = [[Jogador alloc] init];
+    //Jogador *jogadorB = [[Jogador alloc] init];
+    //Jogador *jogadorC = [[Jogador alloc] init];
+    //Jogador *jogadorD = [[Jogador alloc] init];
+    
+    NSMutableArray *jogadores = [[NSMutableArray alloc] initWithObjects:jogadorA, jogadorB, jogadorC, jogadorD, nil];
+    
     jogo.proximoJogador = JogadorA;
     
     do{
         Jogada *jogada = [[Jogada alloc] initWithBaralho:jogo.baralho];
+        
+        for (Jogador *atual in jogadores) {
+            for (int i=0; i < NUM_CARDS; i++) {
+                
+            }
+        }
         
         /*
         //Primeira Mão

@@ -8,7 +8,7 @@
 
 #import "Jogador.h"
 
-@interface Jogador(){
+@interface Jogador() {
     int indexCarta;
 }
 
@@ -101,9 +101,9 @@
                         break;
                 }
                 
-                return AcaoEnum.ACEITAR;
+                return Aceitar;
             case 2:
-                return AcaoEnum.CORRER;
+                return Correr;
             case 3:
                 switch (jogada.ValorJogada) {
                     case HUM:
@@ -119,15 +119,19 @@
                         jogada.ValorJogada = ValorJogadaEnum.DOZE;
                         break;
                 }
-                return AcaoEnum.AUMENTAR;
+                return Aumentar;
         }
     }
     
-    return AcaoEnum.JOGAR;
+    return Jogar;
 }
 
--(void)receberCartas:(NSArray*)cartas {
-    self.cartas = [cartas mutableCopy];
+-(void)receberCartas:(Carta*)carta {
+    if([self.cartas count] >= 3) {
+        return;
+    }
+    
+    [self.cartas addObject:carta];
 }
 
 @end
