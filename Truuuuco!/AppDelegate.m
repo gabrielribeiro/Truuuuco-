@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#include "Jogo.h"
+#import "Jogo.h"
 
 @implementation AppDelegate
 
@@ -22,10 +22,10 @@ static const int NUM_CARDS = 3;
     
     Jogo *jogo = [[Jogo alloc] init];
     
-    //Jogador *jogadorA = [[Jogador alloc] init];
-    //Jogador *jogadorB = [[Jogador alloc] init];
-    //Jogador *jogadorC = [[Jogador alloc] init];
-    //Jogador *jogadorD = [[Jogador alloc] init];
+    Jogador *jogadorA = [[Jogador alloc] init];
+    Jogador *jogadorB = [[Jogador alloc] init];
+    Jogador *jogadorC = [[Jogador alloc] init];
+    Jogador *jogadorD = [[Jogador alloc] init];
     
     NSMutableArray *jogadores = [[NSMutableArray alloc] initWithObjects:jogadorA, jogadorB, jogadorC, jogadorD, nil];
     

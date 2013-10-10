@@ -28,7 +28,7 @@
     return self.trucoPedido;
 }
 
--(void)addAcao:(AcaoTruco)acao forJogador:(JogadorEnum)jogador withCarta:(Carta*)carta
+-(void)addAcao:(AcaoTruco)acao forJogador:(int)jogador withCarta:(Carta*)carta
 {
 	[self.acoesDosJogadores setObject:[NSNumber numberWithInt:acao]
                                forKey:[NSNumber numberWithInt:jogador]];
@@ -45,7 +45,7 @@
     }
 }
 
--(TimeEnum)timeVendedor
+/*-(TimeEnum)timeVencedor
 {
     int fujao = [self alguemCorreu];
     
@@ -63,14 +63,14 @@
     }
     
     return TimeA;
-}
+}*/
 
 -(JogadorEnum)alguemCorreu
 {
     for (NSNumber *acaoNumber in self.acoesDosJogadores) {
         if(acaoNumber.intValue == AcaoTrucoFugir) {
             NSNumber *jogadorNumber = [self.acoesDosJogadores objectForKey:acaoNumber];
-            return jogadorNumber.intValue;
+            return [jogadorNumber integerValue];
         }
     }
     

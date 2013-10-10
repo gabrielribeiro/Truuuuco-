@@ -19,9 +19,9 @@
 		793E27DC18057C0500FC0AE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 793E27C418057C0500FC0AE4 /* UIKit.framework */; };
 		793E27E418057C0500FC0AE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 793E27E218057C0500FC0AE4 /* InfoPlist.strings */; };
 		793E27E618057C0500FC0AE4 /* Truuuuco_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 793E27E518057C0500FC0AE4 /* Truuuuco_Tests.m */; };
-		79E0472B18058A780076962D /* Jogada.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0472818058A780076962D /* Jogada.m */; };
+		797F61921806CD3000FDE4D3 /* Jogada.m in Sources */ = {isa = PBXBuildFile; fileRef = 797F61911806CD3000FDE4D3 /* Jogada.m */; };
+		797F61931806CF2500FDE4D3 /* Mao.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0472E180591D70076962D /* Mao.m */; };
 		79E0472C18058A780076962D /* Jogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0472A18058A780076962D /* Jogo.m */; };
-		79E0472F180591D70076962D /* Mao.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0472E180591D70076962D /* Mao.m */; };
 		79E0473718059AEF0076962D /* Baralho.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E0473618059AEF0076962D /* Baralho.m */; };
 		79E7E1EA1805A363008446EA /* Jogador.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E7E1E91805A363008446EA /* Jogador.m */; };
 		7A6B18B918057EEF00D28343 /* Carta.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6B18B818057EEF00D28343 /* Carta.m */; };
@@ -54,15 +54,15 @@
 		793E27E118057C0500FC0AE4 /* Truuuuco!Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Truuuuco!Tests-Info.plist"; sourceTree = "<group>"; };
 		793E27E318057C0500FC0AE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		793E27E518057C0500FC0AE4 /* Truuuuco_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Truuuuco_Tests.m; sourceTree = "<group>"; };
-		79E0472718058A780076962D /* Jogada.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jogada.h; sourceTree = "<group>"; };
-		79E0472818058A780076962D /* Jogada.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jogada.m; sourceTree = "<group>"; };
+		797F618F1806CBCD00FDE4D3 /* Jogador.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jogador.h; sourceTree = "<group>"; };
+		797F61901806CD3000FDE4D3 /* Jogada.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jogada.h; sourceTree = "<group>"; };
+		797F61911806CD3000FDE4D3 /* Jogada.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jogada.m; sourceTree = "<group>"; };
 		79E0472918058A780076962D /* Jogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jogo.h; sourceTree = "<group>"; };
 		79E0472A18058A780076962D /* Jogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jogo.m; sourceTree = "<group>"; };
 		79E0472D180591D70076962D /* Mao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mao.h; sourceTree = "<group>"; };
 		79E0472E180591D70076962D /* Mao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mao.m; sourceTree = "<group>"; };
 		79E0473518059AEF0076962D /* Baralho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Baralho.h; sourceTree = "<group>"; };
 		79E0473618059AEF0076962D /* Baralho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Baralho.m; sourceTree = "<group>"; };
-		79E7E1E81805A363008446EA /* Jogador.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jogador.h; sourceTree = "<group>"; };
 		79E7E1E91805A363008446EA /* Jogador.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jogador.m; sourceTree = "<group>"; };
 		7A6B18B718057EEF00D28343 /* Carta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Carta.h; sourceTree = "<group>"; };
 		7A6B18B818057EEF00D28343 /* Carta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Carta.m; sourceTree = "<group>"; };
@@ -125,21 +125,21 @@
 		793E27C618057C0500FC0AE4 /* Truuuuco! */ = {
 			isa = PBXGroup;
 			children = (
+				797F61901806CD3000FDE4D3 /* Jogada.h */,
+				797F61911806CD3000FDE4D3 /* Jogada.m */,
 				793E27CF18057C0500FC0AE4 /* AppDelegate.h */,
 				793E27D018057C0500FC0AE4 /* AppDelegate.m */,
 				793E27D218057C0500FC0AE4 /* Images.xcassets */,
 				793E27C718057C0500FC0AE4 /* Supporting Files */,
 				79E0472918058A780076962D /* Jogo.h */,
 				79E0472A18058A780076962D /* Jogo.m */,
-				79E0472718058A780076962D /* Jogada.h */,
-				79E0472818058A780076962D /* Jogada.m */,
 				79E0472D180591D70076962D /* Mao.h */,
 				79E0472E180591D70076962D /* Mao.m */,
 				79E0473518059AEF0076962D /* Baralho.h */,
 				79E0473618059AEF0076962D /* Baralho.m */,
 				7A6B18B718057EEF00D28343 /* Carta.h */,
 				7A6B18B818057EEF00D28343 /* Carta.m */,
-				79E7E1E81805A363008446EA /* Jogador.h */,
+				797F618F1806CBCD00FDE4D3 /* Jogador.h */,
 				79E7E1E91805A363008446EA /* Jogador.m */,
 			);
 			path = "Truuuuco!";
@@ -270,10 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				79E0472C18058A780076962D /* Jogo.m in Sources */,
+				797F61921806CD3000FDE4D3 /* Jogada.m in Sources */,
 				7A6B18B918057EEF00D28343 /* Carta.m in Sources */,
+				797F61931806CF2500FDE4D3 /* Mao.m in Sources */,
 				79E7E1EA1805A363008446EA /* Jogador.m in Sources */,
-				79E0472B18058A780076962D /* Jogada.m in Sources */,
-				79E0472F180591D70076962D /* Mao.m in Sources */,
 				79E0473718059AEF0076962D /* Baralho.m in Sources */,
 				793E27D118057C0500FC0AE4 /* AppDelegate.m in Sources */,
 				793E27CD18057C0500FC0AE4 /* main.m in Sources */,

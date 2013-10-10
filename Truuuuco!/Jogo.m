@@ -7,7 +7,7 @@
 //
 
 #import "Jogo.h"
-#include "Baralho.h"
+#import "Baralho.h"
 
 @implementation Jogo
 

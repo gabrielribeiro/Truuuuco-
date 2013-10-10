@@ -7,6 +7,7 @@
 //
 
 #import "Jogador.h"
+#import "Jogada.h"
 
 @interface Jogador() {
     int indexCarta;
@@ -16,6 +17,7 @@
 
 @implementation Jogador
 
+/*
 -(AcaoEnum)getAcaoJogada:(Jogada *)jogada {
     NSLog(@"Tecle:");
     
@@ -30,7 +32,7 @@
         NSLog(@"4) Trucar");
         NSLog(@"5) Correr");
         
-        int acao;// = Console.Read();
+        int acao = 0;// = Console.Read();
         
         switch(acao){
             case 1:
@@ -72,13 +74,13 @@
         NSLog(@"2) Correr");
         
         switch (jogada.valorJogada) {
-            case HUM:
+            case ValorJogadaHum:
                 NSLog(@"3) Pedir Seis");
                 break;
-            case TRES:
+            case ValorJogadaTres:
                 NSLog(@"3) Pedir Nove");
                 break;
-            case NOVE:
+            case ValorJogadaSeis:
                 NSLog(@"3) Pedir Doze");
                 break;
         }
@@ -86,18 +88,18 @@
         int acao;// = Console.Read();
         switch(acao){
             case 1:
-                switch (jogada.ValorJogada) {
-                    case HUM:
-                        jogada.ValorJogada = ValorJogadaEnum.TRES;
+                switch (jogada.valorJogada) {
+                    case ValorJogadaHum:
+                        jogada.ValorJogada = ValorJogadaTres;
                         break;
-                    case TRES:
-                        jogada.ValorJogada = ValorJogadaEnum.SEIS;
+                    case ValorJogadaTres:
+                        jogada.ValorJogada = ValorJogadaSeis;
                         break;
-                    case SEIS:
-                        jogada.ValorJogada = ValorJogadaEnum.NOVE;
+                    case ValorJogadaSeis:
+                        jogada.ValorJogada = ValorJogadaNove;
                         break;
-                    case NOVE:
-                        jogada.ValorJogada = ValorJogadaEnum.DOZE;
+                    case ValorJogadaNove:
+                        jogada.ValorJogada = ValorJogadaDoze;
                         break;
                 }
                 
@@ -105,18 +107,18 @@
             case 2:
                 return Correr;
             case 3:
-                switch (jogada.ValorJogada) {
-                    case HUM:
-                        jogada.ValorJogada = ValorJogadaEnum.TRES;
+                switch (jogada.valorJogada) {
+                    case ValorJogadaHum:
+                        jogada.ValorJogada = ValorJogadaTres;
                         break;
-                    case TRES:
-                        jogada.ValorJogada = ValorJogadaEnum.SEIS;
+                    case ValorJogadaTres:
+                        jogada.ValorJogada = ValorJogadaSeis;
                         break;
-                    case SEIS:
-                        jogada.ValorJogada = ValorJogadaEnum.NOVE;
+                    case ValorJogadaSeis:
+                        jogada.ValorJogada = ValorJogadaNove;
                         break;
-                    case NOVE:
-                        jogada.ValorJogada = ValorJogadaEnum.DOZE;
+                    case ValorJogadaNove:
+                        jogada.ValorJogada = ValorJogadaDoze;
                         break;
                 }
                 return Aumentar;
@@ -125,6 +127,7 @@
     
     return Jogar;
 }
+*/
 
 -(void)receberCartas:(Carta*)carta {
     if([self.cartas count] >= 3) {

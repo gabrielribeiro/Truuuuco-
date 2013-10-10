@@ -10,10 +10,20 @@
 #import "Baralho.h"
 #import "Mao.h"
 
-@interface Jogada : NSObject
+typedef enum ValorJogada{
+    ValorJogadaHum = 1,
+    ValorJogadaTres = 3,
+    ValorJogadaSeis = 6,
+    ValorJogadaNove = 9,
+    ValorJogadaDoze = 12
+}ValorJogada;
 
-@property (nonatomic,strong) Mao *maoAtual;
+@interface Jogada : NSObject{
+    Baralho *baralho;
+}
 
--(instancetype)initWithBaralho:(Baralho*)baralho;
+@property (nonatomic,assign) ValorJogada valorJogada;
+
+-(instancetype)initWithBaralho:(Baralho*)pBaralho;
 
 @end

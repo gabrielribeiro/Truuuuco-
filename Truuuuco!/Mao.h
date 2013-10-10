@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#include "Carta.h"
-#include "Jogador.h"
+#import "Carta.h"
+#import "Jogador.h"
 
 typedef enum AcaoTruco{
     AcaoTrucoTrucar = 0,
@@ -27,6 +27,6 @@ typedef enum AcaoTruco{
 @property (nonatomic,strong) NSMutableDictionary *cartasJogadas;
 
 -(instancetype) initWithVira:(Carta*)vira;
--(void)addAcao:(AcaoTruco)acao forJogador:(JogadorEnum)jogador withCarta:(Carta*)carta;
+-(void)addAcao:(AcaoTruco)acao forJogador:(int)jogador withCarta:(Carta*)carta;
 
 @end

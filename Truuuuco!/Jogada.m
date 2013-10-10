@@ -8,19 +8,13 @@
 
 #import "Jogada.h"
 
-@interface Jogada() {
-    Baralho *_baralho;
-}
-
-@end
-
 @implementation Jogada
 
--(instancetype)initWithBaralho:(Baralho*)baralho;
+-(instancetype)initWithBaralho:(Baralho*)pBaralho;
 {
     self = [super init];
     if (self) {
-        _baralho = baralho;
+        baralho = pBaralho;
     }
     return self;
 }
