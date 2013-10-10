@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "Baralho.h"
+#import "Mao.h"
 
 @interface Jogada : NSObject
+
+@property (nonatomic,strong) Mao *maoAtual;
 
 -(instancetype)initWithBaralho:(Baralho*)baralho;
 

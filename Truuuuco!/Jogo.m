@@ -11,11 +11,12 @@
 
 @implementation Jogo
 
-- (id)init
+-(instancetype)initWithBaralho:(Baralho*)baralho
 {
     self = [super init];
     if (self) {
-        
+        self.baralho = baralho;
+        [self.baralho embaralhar]; //?
     }
     return self;
 }

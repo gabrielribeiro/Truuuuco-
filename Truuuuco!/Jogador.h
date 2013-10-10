@@ -34,6 +34,9 @@ typedef enum AcaoEnum
 
 @interface Jogador : NSObject
 
--(int)getAcaoJogada:(Jogada *) jogada;
+@property (nonatomic,strong) NSMutableArray *cartas;
+
+-(AcaoEnum)getAcaoJogada:(Jogada *) jogada;
+-(void)receberCartas:(NSArray*)cartas;
 
 @end
