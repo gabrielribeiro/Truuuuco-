@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Baralho.h"
 #import "Mao.h"
+#import "Baralho.h"
 
 typedef enum ValorJogada{
     ValorJogadaHum = 1,
@@ -22,8 +22,11 @@ typedef enum ValorJogada{
     Baralho *baralho;
 }
 
+@property (nonatomic,strong) Carta *vira;
 @property (nonatomic,assign) ValorJogada valorJogada;
+@property Mao *maoAtual;
 
 -(instancetype)initWithBaralho:(Baralho*)pBaralho;
+-(int)jogarMao:(int)proximo andJogadores:(NSMutableArray*)jogadores;
 
 @end

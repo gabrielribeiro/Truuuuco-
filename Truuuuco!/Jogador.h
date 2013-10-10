@@ -11,18 +11,27 @@
 
 typedef enum JogadorEnum
 {
-    JogadorA,
+    JogadorA = 0,
     JogadorB,
     JogadorC,
     JogadorD
 }JogadorEnum;
+
+typedef enum AcaoJogador
+{
+    AcaoJogadorCorrer = 0,
+    AcaoJogadorJogar,
+    AcaoJogadorTrucar,
+    AcaoJogadorAumentar,
+    AcaoJogadorAceitar
+}AcaoJogador;
 
 @interface Jogador : NSObject
 
 @property (nonatomic,strong) NSMutableArray *cartas;
 @property (nonatomic,assign) JogadorEnum tipo;
 
-//-(AcaoEnum)getAcaoJogada:(Jogada*) jogada;
--(void)receberCartas:(Carta*)carta;
+-(AcaoJogador)getAcaoJogada:(Jogada*) jogada;
+-(void)receberCarta:(Carta*)carta;
 
 @end

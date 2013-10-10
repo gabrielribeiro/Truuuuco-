@@ -20,6 +20,5 @@
 @property (nonatomic,assign,getter = isFinalizado) bool finalizado;
 
 -(void)atualizarPlacar:(Jogada*)jogada;
--(instancetype)initWithBaralho:(Baralho*)baralho;
 
 @end

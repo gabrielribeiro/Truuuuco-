@@ -27,36 +27,48 @@ static const int NUM_CARDS = 3;
     Jogador *jogadorC = [[Jogador alloc] init];
     Jogador *jogadorD = [[Jogador alloc] init];
     
+    jogadorA.tipo = JogadorA;
+    jogadorB.tipo = JogadorB;
+    jogadorC.tipo = JogadorC;
+    jogadorD.tipo = JogadorD;
+    
     NSMutableArray *jogadores = [[NSMutableArray alloc] initWithObjects:jogadorA, jogadorB, jogadorC, jogadorD, nil];
     
-    jogo.proximoJogador = JogadorA;
+    jogo.proximoJogador = arc4random() %4;
     
     do{
         Jogada *jogada = [[Jogada alloc] initWithBaralho:jogo.baralho];
         
-        for (Jogador *atual in jogadores) {
+        NSLog(@"VIRA: %@",jogada.vira);
+        
+        for (Jogador *temp in jogadores) {
             for (int i=0; i < NUM_CARDS; i++) {
-                
+                Carta *carta = [jogo.baralho getCarta];
+                [temp receberCarta:carta];
             }
         }
         
-        /*
-        //Primeira Mão
-        jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
+        NSLog(@"===PRIMEIRA MÃO===");
         
-        if(jogada.MaoAtual.vencedor != null)
-            proximo = jogada.MaoAtual.vencedor;
+        //Primeira Mão
+        [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        
+        //if(jogada.maoAtual.vencedor != nil)
+            //proximo = jogada.maoAtual.vencedor;
+        
+        NSLog(@"===SEGUNDA MÃO===");
         
         //Segunda Mão
-        jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
+        [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
         
+        /*
         if(jogada.VencedoresMaos[0] == jogada.VencedoresMaos[1]){
             jogo.AtualizaPlacar(jogada);
             continue;
         }
         
         if(!jogada.MaoAtual.Empachou)
-            jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
+            [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
         
          */
         

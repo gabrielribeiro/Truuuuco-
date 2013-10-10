@@ -10,7 +10,7 @@
 
 @implementation Carta
 
--(id)initWithValor:(enum ValorCarta)valor andNaipe:(enum NaipeCarta)naipe
+-(id)initWithValor:(ValorCarta)valor andNaipe:(NaipeCarta)naipe
 {
     self = [super init];
     if(self) {
@@ -18,6 +18,60 @@
         self.naipe = naipe;
     }
     return self;
+}
+
+-(NSString *)description{
+    NSString *valor, *naipe;
+    
+    switch (self.valor) {
+        case ValorCartaQuatro:
+            valor = @"4";
+            break;
+        case ValorCartaCinco:
+            valor = @"5";
+            break;
+        case ValorCartaSeis:
+            valor = @"6";
+            break;
+        case ValorCartaSete:
+            valor = @"7";
+            break;
+        case ValorCartaDamas:
+            valor = @"Q";
+            break;
+        case ValorCartaValete:
+            valor = @"J";
+            break;
+        case ValorCartaReis:
+            valor = @"K";
+            break;
+        case ValorCartaAs:
+            valor = @"A";
+            break;
+        case ValorCartaDois:
+            valor = @"2";
+            break;
+        case ValorCartaTres:
+            valor = @"3";
+            break;
+    }
+    
+    switch (self.naipe) {
+        case NaipeCartaPaus:
+            naipe = @"Paus";
+            break;
+        case NaipeCartaCopas:
+            naipe = @"Copas";
+            break;
+        case NaipeCartaEspadas:
+            naipe = @"Espadas";
+            break;
+        case NaipeCartaOuros:
+            naipe = @"Ouros";
+            break;
+    }
+    
+    return [NSString stringWithFormat:@"%@ de %@", valor, naipe];
 }
 
 -(int)getPontuacao:(Carta *)vira
@@ -38,8 +92,8 @@
 {
     NSMutableArray *naipes = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 4; i++) {
-        NaipeCarta naipe = i+1;
+    for (int i = 1; i < 5; i++) {
+        NaipeCarta naipe = i+10;
         [naipes addObject:[NSNumber numberWithInt:naipe]];
     }
     
