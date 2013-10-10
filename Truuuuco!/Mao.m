@@ -48,11 +48,11 @@
         switch (fujao) {
             case JogadorA:
             case JogadorC:
-                return TimeA;
+                return TimeB;
                 break;
             case JogadorB:
             case JogadorD:
-                return TimeB;
+                return TimeA;
                 break;
         }
     }
