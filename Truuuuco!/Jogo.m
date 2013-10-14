@@ -22,11 +22,19 @@
 
 -(bool)isFinalizado
 {
-    return self.pontuacaoTimeA >= 12 || self.pontuacaoTimeB >= 12;
+    return self.pTimeA >= 12 || self.pTimeB >= 12;
 }
 
--(void)atualizarPlacar:(Jogada*)jogada {
-    
-}
+/*-(void)placarGeral {
+    NSLog(@"Placar Geral: \n Time A: %u \n Time B: %u \n", (self.pTimeA % 3), (self.pTimeB%3));
+    if(self.pTimeA % 3 == 12)
+    {
+        NSLog(@"DA GAEM HAS ENDED");
+    }
+    if(self.pTimeB % 3 == 12)
+    {
+        NSLog(@"DA GAME HAS ENDED, MON");
+    }
+}*/
 
 @end

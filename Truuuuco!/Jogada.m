@@ -8,16 +8,25 @@
 
 #import "Jogada.h"
 #import "Jogador.h"
+#import "AppDelegate.h"
 
+@interface Jogada()
+
+@property (nonatomic, weak) AppDelegate *app;
+@property (nonatomic) int iValorJogada;
+
+@end
 @implementation Jogada
 
 -(instancetype)initWithBaralho:(Baralho*)pBaralho;
 {
     self = [super init];
     if (self) {
+        self.app.Jogada = self;
         self.vira = [pBaralho getCarta];
         self.trucante = -1;
         baralho = pBaralho;
+        self.iValorJogada = ValorJogadaTres;
     }
     return self;
 }
@@ -51,6 +60,9 @@
     
     //ver que equipe ganhou a mão
     NSLog(@"VENCEDOR: %u", self.maoAtual.vencedor);
+    
+    self.app.valorJogada = self.iValorJogada;
+
     
     return self.maoAtual.vencedor;
 }

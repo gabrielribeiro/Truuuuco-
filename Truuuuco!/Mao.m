@@ -30,7 +30,7 @@
 }
 
 -(TimeEnum)definirVencedor{
-    int fujao = self.alguemCorreuInt;
+    int fujao = [self alguemCorreu];
     
     if(fujao >= 0) {
         switch (fujao) {
@@ -75,15 +75,16 @@
 
 -(JogadorEnum)alguemCorreu
 {
-    int alguemCorreuInt = 0;
     for (NSNumber *jogadorNumber in self.acoesDosJogadores) {
         NSNumber *acaoNumber = [self.acoesDosJogadores objectForKey:jogadorNumber];
         
         if(acaoNumber.intValue == AcaoJogadorCorrer) {
 
             self.alguemCorreuInt = [jogadorNumber intValue];
+            return self.alguemCorreuInt;
         }
     }
+    self.alguemCorreuInt = -1;
     return self.alguemCorreuInt;
 }
 

@@ -103,6 +103,9 @@
                 jogada.trucante = self.tipo;
                 jogada.hasToAceitarRecusarTruco = YES;
                 
+                [jogada.maoAtual.acoesDosJogadores setObject:[NSNumber numberWithInt:AcaoJogadorJogar]
+                                                      forKey:[NSNumber numberWithInt:self.tipo]];
+                
                 if(jogada.trucante >= 0 && jogada.trucante != self.tipo)
                 {
                     switch (jogada.valorJogada) {
@@ -128,6 +131,9 @@
                 }
             case 5:
                 indexCarta = -1;
+                
+                [jogada.maoAtual.acoesDosJogadores setObject:[NSNumber numberWithInt:AcaoJogadorCorrer]
+                                                      forKey:[NSNumber numberWithInt:self.tipo]];
                 
                 NSLog(@"%@ Fugiu!", self);
                 
@@ -183,6 +189,10 @@
                 return AcaoJogadorAceitar;
             case 2:
                 jogada.hasToAceitarRecusarTruco = NO;
+                
+                [jogada.maoAtual.acoesDosJogadores setObject:[NSNumber numberWithInt:AcaoJogadorCorrer]
+                                                      forKey:[NSNumber numberWithInt:self.tipo]];
+                
                 NSLog(@"%@ Correu!", self);
                 return AcaoJogadorCorrer;
             case 3:

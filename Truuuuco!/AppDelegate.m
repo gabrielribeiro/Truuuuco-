@@ -7,11 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "Jogo.h"
+#import "jogo.h"
+#import "Jogada.h"
 
 @interface AppDelegate()
 @property (nonatomic) int pTimeA;
 @property (nonatomic) int pTimeB;
+@property (nonatomic, strong) Jogo *jogo;
 @end
 
 @implementation AppDelegate
@@ -25,7 +27,7 @@ static const int NUM_CARDS = 3;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    Jogo *jogo = [[Jogo alloc] init];
+    self.jogo = [[Jogo alloc] init];
     
     Jogador *jogadorA = [[Jogador alloc] init];
     Jogador *jogadorB = [[Jogador alloc] init];
@@ -39,16 +41,16 @@ static const int NUM_CARDS = 3;
     
     NSMutableArray *jogadores = [[NSMutableArray alloc] initWithObjects:jogadorA, jogadorB, jogadorC, jogadorD, nil];
     
-    jogo.proximoJogador = arc4random() %4;
+    self.jogo.proximoJogador = arc4random() %4;
     
     do{
-        Jogada *jogada = [[Jogada alloc] initWithBaralho:jogo.baralho];
-        
+        Jogada *jogada = [[Jogada alloc] initWithBaralho:self.jogo.baralho];
+
         NSLog(@"VIRA: %@",jogada.vira);
         
         for (Jogador *temp in jogadores) {
             for (int i=0; i < NUM_CARDS; i++) {
-                Carta *carta = [jogo.baralho getCarta];
+                Carta *carta = [self.jogo.baralho getCarta];
                 [temp receberCarta:carta];
             }
         }
@@ -56,47 +58,54 @@ static const int NUM_CARDS = 3;
         NSLog(@"===PRIMEIRA MÃO===");
         
         //Primeira Mão
-        int vencedorMao1 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
-        if(vencedorMao1 == 1)
-        {
-            self.pTimeB ++;
-        }
-        else
-        {
-            self.pTimeA ++;
-        }
-        NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.pTimeA, self.pTimeB);
+        int vencedorMao1 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+        NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.jogo.pTimeA, self.jogo.pTimeB);
         
         NSLog(@"===SEGUNDA MÃO===");
         
         //Segunda Mão
-        int vencedorMao2 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        int vencedorMao2 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
         
-        if(vencedorMao2 == 1)
-        {
-            self.pTimeB ++;
-        }
-        else
-        {
-            self.pTimeA ++;
-        }
-        NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.pTimeA, self.pTimeB);
+        NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.jogo.pTimeA, self.jogo.pTimeB);
         
         if(vencedorMao1 == vencedorMao2){
-            [jogo atualizarPlacar:jogada];
+            if(vencedorMao1 == 1)
+            {
+                NSLog(@"%u", self.valorJogada);
+                self.jogo.pTimeB += self.valorJogada;
+            }
+            else
+            {
+                NSLog(@"%u", self.valorJogada);
+                self.jogo.pTimeA += self.valorJogada;
+            }
             continue;
-            break;
         }
         
         if(!jogada.maoAtual.empatado)
         {
             NSLog(@"===TERCEIRA MÃO===");
-            [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+            int vencedorMao3 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+
+            if(vencedorMao3 == vencedorMao1)
+            {
+                if(vencedorMao1 == 1)
+                {
+                    NSLog(@"%u", self.valorJogada);
+                    self.jogo.pTimeB += self.valorJogada;
+                }
+                else
+                {
+                    NSLog(@"%u", self.valorJogada);
+                    self.jogo.pTimeA += self.valorJogada;
+                }
+            }
+            NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.jogo.pTimeA, self.jogo.pTimeB);
         }
         
-        [jogo atualizarPlacar:jogada];
+        //[self.jogo placarGeral];
         
-    }while (!jogo.isFinalizado);
+    }while (!self.jogo.isFinalizado);
     
     return YES;
 }

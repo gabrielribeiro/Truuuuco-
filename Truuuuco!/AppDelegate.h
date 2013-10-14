@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Jogada.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, strong) Jogada *jogada;
+
+@property (nonatomic) int valorJogada;
 
 @end

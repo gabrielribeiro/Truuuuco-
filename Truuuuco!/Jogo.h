@@ -18,7 +18,8 @@
 @property (nonatomic,assign) JogadorEnum proximoJogador;
 @property (nonatomic,strong) Baralho *baralho;
 @property (nonatomic,assign,getter = isFinalizado) bool finalizado;
+@property (nonatomic) int pTimeA;
+@property (nonatomic) int pTimeB;
 
--(void)atualizarPlacar:(Jogada*)jogada;
-
+-(void)placarGeral;
 @end
