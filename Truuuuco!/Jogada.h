@@ -7,10 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Mao.h"
 #import "Baralho.h"
 
-@interface Jogada : NSObject
+typedef enum ValorJogada{
+    ValorJogadaHum = 1,
+    ValorJogadaTres = 3,
+    ValorJogadaSeis = 6,
+    ValorJogadaNove = 9,
+    ValorJogadaDoze = 12
+}ValorJogada;
 
--(instancetype)initWithBaralho:(Baralho*)baralho;
+@interface Jogada : NSObject{
+    Baralho *baralho;
+}
+
+@property (nonatomic,strong) Carta *vira;
+@property (nonatomic,assign) ValorJogada valorJogada;
+@property (nonatomic,assign) int trucante;
+@property (nonatomic,assign) bool hasToAceitarRecusarTruco;
+@property Mao *maoAtual;
+
+-(instancetype)initWithBaralho:(Baralho*)pBaralho;
+-(int)jogarMao:(int)proximo andJogadores:(NSMutableArray*)jogadores;
 
 @end

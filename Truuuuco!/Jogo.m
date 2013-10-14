@@ -7,7 +7,7 @@
 //
 
 #import "Jogo.h"
-#include "Baralho.h"
+#import "Baralho.h"
 
 @implementation Jogo
 
@@ -15,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-        
+        self.baralho = [[Baralho alloc] init];
     }
     return self;
 }

@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#include "Jogada.h"
-#include "Jogador.h"
+#import "Jogada.h"
+#import "Jogador.h"
 
 @interface Jogo : NSObject
 

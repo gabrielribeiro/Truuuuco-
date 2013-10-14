@@ -7,9 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#include "Jogo.h"
+#import "Jogo.h"
 
 @implementation AppDelegate
+
+static const int NUM_CARDS = 3;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -20,30 +22,52 @@
     
     Jogo *jogo = [[Jogo alloc] init];
     
-    jogo.proximoJogador = JogadorA;
+    Jogador *jogadorA = [[Jogador alloc] init];
+    Jogador *jogadorB = [[Jogador alloc] init];
+    Jogador *jogadorC = [[Jogador alloc] init];
+    Jogador *jogadorD = [[Jogador alloc] init];
+    
+    jogadorA.tipo = JogadorA;
+    jogadorB.tipo = JogadorB;
+    jogadorC.tipo = JogadorC;
+    jogadorD.tipo = JogadorD;
+    
+    NSMutableArray *jogadores = [[NSMutableArray alloc] initWithObjects:jogadorA, jogadorB, jogadorC, jogadorD, nil];
+    
+    jogo.proximoJogador = arc4random() %4;
     
     do{
         Jogada *jogada = [[Jogada alloc] initWithBaralho:jogo.baralho];
         
-        /*
-        //Primeira Mão
-        jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
+        NSLog(@"VIRA: %@",jogada.vira);
         
-        if(jogada.MaoAtual.vencedor != null)
-            proximo = jogada.MaoAtual.vencedor;
+        for (Jogador *temp in jogadores) {
+            for (int i=0; i < NUM_CARDS; i++) {
+                Carta *carta = [jogo.baralho getCarta];
+                [temp receberCarta:carta];
+            }
+        }
+        
+        NSLog(@"===PRIMEIRA MÃO===");
+        
+        //Primeira Mão
+        TimeEnum vencedorMao1 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        
+        NSLog(@"===SEGUNDA MÃO===");
         
         //Segunda Mão
-        jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
+        TimeEnum vencedorMao2 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
         
-        if(jogada.VencedoresMaos[0] == jogada.VencedoresMaos[1]){
-            jogo.AtualizaPlacar(jogada);
+        if(vencedorMao1 == vencedorMao2){
+            [jogo atualizarPlacar:jogada];
             continue;
         }
         
-        if(!jogada.MaoAtual.Empachou)
-            jogada.MaoAtual = jogada.jogarMao(proximo, jogador, oponente);
-        
-         */
+        if(!jogada.maoAtual.empatado)
+        {
+            NSLog(@"===TERCEIRA MÃO===");
+            [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        }
         
         [jogo atualizarPlacar:jogada];
         
