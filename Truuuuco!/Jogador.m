@@ -41,7 +41,7 @@
 -(AcaoJogador)getAcaoJogada:(Jogada *)jogada {
     NSLog(@"Tecle:");
     
-    if(jogada.maoAtual == nil || jogada.trucante < 0){
+    if(!jogada.hasToAceitarRecusarTruco){
         
         for(int i=0; i<3; i++){
             if(self.cartas[i] != nil && self.cartas[i] != [NSNull null]){
@@ -49,10 +49,18 @@
             }
         }
         
-        NSLog(@"4) Trucar");
-        NSLog(@"5) Correr");
+        int acao;
         
-        int acao = arc4random() % 5;// = Console.Read();
+        if(jogada.trucante != self.tipo) {
+            NSLog(@"4) Trucar");
+            NSLog(@"5) Correr");
+            
+            acao = arc4random() % 5;
+        } else {
+            NSLog(@"4) Aumentar");
+            
+            acao = arc4random() % 3;
+        }
         
         acao = (acao == 0) ? 1 : acao;
         
@@ -94,10 +102,31 @@
                 indexCarta = -1;
                 
                 jogada.trucante = self.tipo;
+                jogada.hasToAceitarRecusarTruco = YES;
                 
-                NSLog(@"%@ TRUCOU!", self);
-                
-                return AcaoJogadorTrucar;
+                if(jogada.trucante >= 0 && jogada.trucante != self.tipo)
+                {
+                    switch (jogada.valorJogada) {
+                        case ValorJogadaHum:
+                            jogada.ValorJogada = ValorJogadaSeis;
+                            break;
+                        case ValorJogadaTres:
+                            jogada.ValorJogada = ValorJogadaNove;
+                            break;
+                        case ValorJogadaSeis:
+                            jogada.ValorJogada = ValorJogadaDoze;
+                            break;
+                    }
+                    
+                    NSLog(@"%@ Aumentou!", self);
+                    return AcaoJogadorAumentar;
+                }
+                else
+                {
+                    NSLog(@"%@ TRUCOU!", self);
+                    
+                    return AcaoJogadorTrucar;
+                }
             case 5:
                 indexCarta = -1;
                 
@@ -105,126 +134,79 @@
                 
                 return AcaoJogadorCorrer;
         }
-    } else { //JÁ PEDIU TRUCO
+    } else { //DEVE ACEITAR TRUCO
         
-        if(jogada.trucante == self.tipo) {
-            
-            for(int i=0; i<3; i++){
-                if(self.cartas[i] != nil && self.cartas[i] != [NSNull null]){
-                    NSLog(@"%u) Jogar %@", i+1, self.cartas[i]);
-                }
-            }
-            
-            int acao = arc4random() % 4;// = Console.Read();
-            
-            acao = (acao == 0) ? 1 : acao;
-            
-            switch(acao){
-                case 1:
-                    indexCarta = acao -1;
-                    
-                    if(self.cartas[indexCarta] == nil){
-                        NSLog(@"Jogou carta que não pode? Se fudeu. Perdeu a vez.");
-                        return AcaoJogadorCorrer;
-                    }
-                    
-                    [self jogarCartaParaJogada:jogada];
-                    
-                    return AcaoJogadorJogar;
-                case 2:
-                    indexCarta = acao -1;
-                    
-                    if(self.cartas[indexCarta] == nil){
-                        NSLog(@"Jogou carta que não pode? Se fudeu. Perdeu a vez.");
-                        return AcaoJogadorCorrer;
-                    }
-                    
-                    [self jogarCartaParaJogada:jogada];
-                    
-                    return AcaoJogadorJogar;
-                case 3:
-                    indexCarta = acao -1;
-                    
-                    if(self.cartas[indexCarta] == nil){
-                        NSLog(@"Jogou carta que não pode? Se fudeu. Perdeu a vez.");
-                        return AcaoJogadorCorrer;
-                    }
-                    
-                    [self jogarCartaParaJogada:jogada];
-                    
-                    return AcaoJogadorJogar;
-            }
-
-        } else {
+        NSLog(@"1) Aceitar");
+        NSLog(@"2) Correr");
         
-            NSLog(@"1) Aceitar");
-            NSLog(@"2) Correr");
-            
-            if(jogada.valorJogada < ValorJogadaDoze){
-                switch (jogada.valorJogada) {
-                    case ValorJogadaTres:
-                        NSLog(@"3) Pedir Seis");
-                        break;
-                    case ValorJogadaSeis:
-                        NSLog(@"3) Pedir Nove");
-                        break;
-                    case ValorJogadaNove:
-                        NSLog(@"3) Pedir Doze");
-                        break;
-                }
-            }
-            
-            int acao;
-            
-            if([self getTimeDoJogador:self.tipo] == [self getTimeDoJogador:jogada.trucante]){
-                acao = arc4random() % 3;// = Console.Read();
-            } else {
-                acao = arc4random() % 4;// = Console.Read();
-            }
-            
-            acao = acao == 0 ? 1 : acao;
-            
-            switch(acao){
-                case 1:
-                    switch (jogada.valorJogada) {
-                        case ValorJogadaHum:
-                            jogada.ValorJogada = ValorJogadaTres;
-                            break;
-                        case ValorJogadaTres:
-                            jogada.ValorJogada = ValorJogadaSeis;
-                            break;
-                        case ValorJogadaSeis:
-                            jogada.ValorJogada = ValorJogadaNove;
-                            break;
-                        case ValorJogadaNove:
-                            jogada.ValorJogada = ValorJogadaDoze;
-                            break;
-                    }
-                    NSLog(@"%@ Aceitou!", self);
-                    return AcaoJogadorAceitar;
-                case 2:
-                    NSLog(@"%@ Correu!", self);
-                    return AcaoJogadorCorrer;
-                case 3:
-                    switch (jogada.valorJogada) {
-                        case ValorJogadaHum:
-                            jogada.ValorJogada = ValorJogadaSeis;
-                            break;
-                        case ValorJogadaTres:
-                            jogada.ValorJogada = ValorJogadaNove;
-                            break;
-                        case ValorJogadaSeis:
-                            jogada.ValorJogada = ValorJogadaDoze;
-                            break;
-                    }
-                    
-                    jogada.trucante = self.tipo;
-                    
-                    NSLog(@"%@ Aumentou!", self);
-                    return AcaoJogadorAumentar;
+        if(jogada.valorJogada < ValorJogadaDoze){
+            switch (jogada.valorJogada) {
+                case ValorJogadaTres:
+                    NSLog(@"3) Pedir Seis");
+                    break;
+                case ValorJogadaSeis:
+                    NSLog(@"3) Pedir Nove");
+                    break;
+                case ValorJogadaNove:
+                    NSLog(@"3) Pedir Doze");
+                    break;
             }
         }
+        
+        int acao;
+        
+        if([self getTimeDoJogador:self.tipo] == [self getTimeDoJogador:jogada.trucante]){
+            acao = arc4random() % 3;// = Console.Read();
+        } else {
+            acao = arc4random() % 4;// = Console.Read();
+        }
+        
+        acao = acao == 0 ? 1 : acao;
+        
+        switch(acao){
+            case 1:
+                switch (jogada.valorJogada) {
+                    case ValorJogadaHum:
+                        jogada.ValorJogada = ValorJogadaTres;
+                        break;
+                    case ValorJogadaTres:
+                        jogada.ValorJogada = ValorJogadaSeis;
+                        break;
+                    case ValorJogadaSeis:
+                        jogada.ValorJogada = ValorJogadaNove;
+                        break;
+                    case ValorJogadaNove:
+                        jogada.ValorJogada = ValorJogadaDoze;
+                        break;
+                }
+                jogada.hasToAceitarRecusarTruco = NO;
+                NSLog(@"%@ Aceitou!", self);
+                return AcaoJogadorAceitar;
+            case 2:
+                jogada.hasToAceitarRecusarTruco = NO;
+                NSLog(@"%@ Correu!", self);
+                return AcaoJogadorCorrer;
+            case 3:
+                switch (jogada.valorJogada) {
+                    case ValorJogadaHum:
+                        jogada.ValorJogada = ValorJogadaSeis;
+                        break;
+                    case ValorJogadaTres:
+                        jogada.ValorJogada = ValorJogadaNove;
+                        break;
+                    case ValorJogadaSeis:
+                        jogada.ValorJogada = ValorJogadaDoze;
+                        break;
+                }
+                
+                jogada.trucante = self.tipo;
+                jogada.hasToAceitarRecusarTruco = YES;
+                
+                NSLog(@"%@ Aumentou!", self);
+                return AcaoJogadorAumentar;
+        }
     }
+
     
     return AcaoJogadorJogar;
 }

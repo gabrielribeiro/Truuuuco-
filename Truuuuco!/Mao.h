@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Carta.h"
 
-typedef enum AcaoTruco{
-    AcaoTrucoTrucar = 0,
-    AcaoTrucoAceitar,
-    AcaoTrucoFugir
-}AcaoTruco;
-
-
 typedef enum TimeEnum
 {
     TimeA,

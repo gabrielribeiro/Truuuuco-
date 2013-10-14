@@ -70,7 +70,7 @@
     for (NSNumber *jogadorNumber in self.acoesDosJogadores) {
         NSNumber *acaoNumber = [self.acoesDosJogadores objectForKey:jogadorNumber];
         
-        if(acaoNumber.intValue == AcaoTrucoFugir) {
+        if(acaoNumber.intValue == AcaoJogadorCorrer) {
 
             return [jogadorNumber integerValue];
         }

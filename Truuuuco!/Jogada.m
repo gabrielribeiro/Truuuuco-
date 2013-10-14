@@ -44,6 +44,8 @@
             if(proximo < 0){
                 proximo = 3;
             }
+        } else if(acao == AcaoJogadorCorrer){
+            break;
         }
     } while (cont < 4); //cond. truco
     
