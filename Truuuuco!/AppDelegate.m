@@ -9,6 +9,11 @@
 #import "AppDelegate.h"
 #import "Jogo.h"
 
+@interface AppDelegate()
+@property (nonatomic) int pTimeA;
+@property (nonatomic) int pTimeB;
+@end
+
 @implementation AppDelegate
 
 static const int NUM_CARDS = 3;
@@ -51,16 +56,36 @@ static const int NUM_CARDS = 3;
         NSLog(@"===PRIMEIRA MÃO===");
         
         //Primeira Mão
-        TimeEnum vencedorMao1 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        int vencedorMao1 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        if(vencedorMao1 == 1)
+        {
+            self.pTimeB ++;
+        }
+        else
+        {
+            self.pTimeA ++;
+        }
+        NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.pTimeA, self.pTimeB);
         
         NSLog(@"===SEGUNDA MÃO===");
         
         //Segunda Mão
-        TimeEnum vencedorMao2 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        int vencedorMao2 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        
+        if(vencedorMao2 == 1)
+        {
+            self.pTimeB ++;
+        }
+        else
+        {
+            self.pTimeA ++;
+        }
+        NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.pTimeA, self.pTimeB);
         
         if(vencedorMao1 == vencedorMao2){
             [jogo atualizarPlacar:jogada];
             continue;
+            break;
         }
         
         if(!jogada.maoAtual.empatado)

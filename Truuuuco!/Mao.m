@@ -9,6 +9,12 @@
 #import "Mao.h"
 #import "Jogador.h"
 
+@interface Mao()
+
+@property(nonatomic) int maiorPontuacaoDeCartaJogada;
+@property(nonatomic) int alguemCorreuInt;
+
+@end
 @implementation Mao
 
 - (id)initWithVira:(Carta*)vira
@@ -24,7 +30,7 @@
 }
 
 -(TimeEnum)definirVencedor{
-    int fujao = [self alguemCorreu];
+    int fujao = self.alguemCorreuInt;
     
     if(fujao >= 0) {
         switch (fujao) {
@@ -40,15 +46,15 @@
     }
     
     JogadorEnum jogadorComMaiorCarta;
-    int maiorPontuacaoDeCartaJogada;
+    self.maiorPontuacaoDeCartaJogada = 0;
     
     for (NSNumber *jogadorNumber in self.cartasJogadas) {
         Carta *cartaJogada = [self.cartasJogadas objectForKey:jogadorNumber];
         
-        if([cartaJogada getPontuacao:self.vira] > maiorPontuacaoDeCartaJogada){
-            maiorPontuacaoDeCartaJogada = [cartaJogada getPontuacao:self.vira];
+        if([cartaJogada getPontuacao:self.vira] > self.maiorPontuacaoDeCartaJogada){
+            self.maiorPontuacaoDeCartaJogada = [cartaJogada getPontuacao:self.vira];
             jogadorComMaiorCarta = jogadorNumber.integerValue;
-        } else if([cartaJogada getPontuacao:self.vira] == maiorPontuacaoDeCartaJogada) {
+        } else if([cartaJogada getPontuacao:self.vira] == self.maiorPontuacaoDeCartaJogada) {
             //TODO: Verificar Empachamento
         }
     }
@@ -56,10 +62,12 @@
     switch (jogadorComMaiorCarta) {
         case JogadorA:
         case JogadorC:
+            self.maiorPontuacaoDeCartaJogada = 0;
             return TimeA;
             break;
         case JogadorB:
         case JogadorD:
+            self.maiorPontuacaoDeCartaJogada = 0;
             return TimeB;
             break;
     }
@@ -67,16 +75,16 @@
 
 -(JogadorEnum)alguemCorreu
 {
+    int alguemCorreuInt = 0;
     for (NSNumber *jogadorNumber in self.acoesDosJogadores) {
         NSNumber *acaoNumber = [self.acoesDosJogadores objectForKey:jogadorNumber];
         
         if(acaoNumber.intValue == AcaoJogadorCorrer) {
 
-            return [jogadorNumber integerValue];
+            self.alguemCorreuInt = [jogadorNumber intValue];
         }
     }
-    
-    return -1;
+    return self.alguemCorreuInt;
 }
 
 
