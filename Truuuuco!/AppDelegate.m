@@ -18,8 +18,12 @@ static const int NUM_CARDS = 3;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    self.window.rootViewController = [[MesaViewController alloc] initWithNibName:@"MesaViewController" bundle:nil];
+    
     [self.window makeKeyAndVisible];
     
+    /*
     Jogo *jogo = [[Jogo alloc] init];
     
     Jogador *jogadorA = [[Jogador alloc] init];
@@ -72,7 +76,8 @@ static const int NUM_CARDS = 3;
         [jogo atualizarPlacar:jogada];
         
     }while (!jogo.isFinalizado);
-    
+    */
+     
     return YES;
 }
 
