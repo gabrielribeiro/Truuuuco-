@@ -64,7 +64,10 @@ static const int NUM_CARDS = 3;
         }
         
         if(!jogada.maoAtual.empatado)
+        {
+            NSLog(@"===TERCEIRA MÃO===");
             [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        }
         
         [jogo atualizarPlacar:jogada];
         

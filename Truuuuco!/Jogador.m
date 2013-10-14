@@ -53,14 +53,13 @@
         
         if(jogada.trucante != self.tipo) {
             NSLog(@"4) Trucar");
-            NSLog(@"5) Correr");
-            
-            acao = arc4random() % 5;
         } else {
             NSLog(@"4) Aumentar");
-            
-            acao = arc4random() % 3;
         }
+        
+        NSLog(@"5) Correr");
+        
+        acao = arc4random() % 6;
         
         acao = (acao == 0) ? 1 : acao;
         
