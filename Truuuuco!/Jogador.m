@@ -68,7 +68,7 @@
             case 1:
                 indexCarta = acao -1;
                 
-                if(self.cartas[indexCarta] == nil){
+                if(self.cartas[indexCarta] == [NSNull null]){
                     NSLog(@"Jogou carta que não pode? Se fudeu. Perdeu a vez.");
                     return AcaoJogadorCorrer;
                 }
@@ -79,7 +79,7 @@
             case 2:
                 indexCarta = acao -1;
                 
-                if(self.cartas[indexCarta] == nil){
+                if(self.cartas[indexCarta] == [NSNull null]){
                     NSLog(@"Jogou carta que não pode? Se fudeu. Perdeu a vez.");
                     return AcaoJogadorCorrer;
                 }
@@ -90,7 +90,7 @@
             case 3:
                 indexCarta = acao -1;
                 
-                if(self.cartas[indexCarta] == nil){
+                if(self.cartas[indexCarta] == [NSNull null]){
                     NSLog(@"Jogou carta que não pode? Se fudeu. Perdeu a vez.");
                     return AcaoJogadorCorrer;
                 }
