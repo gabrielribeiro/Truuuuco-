@@ -53,9 +53,6 @@ static const int NUM_CARDS = 3;
         //Primeira Mão
         TimeEnum vencedorMao1 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
         
-        //if(jogada.maoAtual.vencedor != nil)
-            //proximo = jogada.maoAtual.vencedor;
-        
         NSLog(@"===SEGUNDA MÃO===");
         
         //Segunda Mão

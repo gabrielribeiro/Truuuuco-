@@ -39,7 +39,7 @@
         if(acao == AcaoJogadorJogar){
             cont++;
         } else if(acao == AcaoJogadorAceitar){
-            proximo -= 1;
+            proximo -= 2;
             
             if(proximo < 0){
                 proximo = 3;
