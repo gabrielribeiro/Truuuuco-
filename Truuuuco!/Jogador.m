@@ -1,4 +1,4 @@
-//
+ //
 //  Jogador.m
 //  Truuuuco!
 //
@@ -12,6 +12,7 @@
 @interface Jogador() {
     int indexCarta;
 }
+@property (nonatomic, weak) Jogada *jogada;
 
 @end
 
@@ -22,6 +23,7 @@
     self = [super init];
     if (self) {
         self.cartas = [[NSMutableArray alloc] init];
+        self.jogada = [[Jogada alloc] init];
     }
     return self;
 }
@@ -69,6 +71,8 @@
                 
                 if(self.cartas[indexCarta] == [NSNull null]){
                     NSLog(@"Jogou carta que não pode? Se fudeu. Perdeu a vez.");
+                    [jogada.maoAtual.acoesDosJogadores setObject:[NSNumber numberWithInt:AcaoJogadorCorrer]
+                                                          forKey:[NSNumber numberWithInt:self.tipo]];
                     return AcaoJogadorCorrer;
                 }
                 
@@ -80,6 +84,8 @@
                 
                 if(self.cartas[indexCarta] == [NSNull null]){
                     NSLog(@"Jogou carta que não pode? Se fudeu. Perdeu a vez.");
+                    [jogada.maoAtual.acoesDosJogadores setObject:[NSNumber numberWithInt:AcaoJogadorCorrer]
+                                                          forKey:[NSNumber numberWithInt:self.tipo]];
                     return AcaoJogadorCorrer;
                 }
                 
@@ -91,6 +97,8 @@
                 
                 if(self.cartas[indexCarta] == [NSNull null]){
                     NSLog(@"Jogou carta que não pode? Se fudeu. Perdeu a vez.");
+                    [jogada.maoAtual.acoesDosJogadores setObject:[NSNumber numberWithInt:AcaoJogadorCorrer]
+                                                          forKey:[NSNumber numberWithInt:self.tipo]];
                     return AcaoJogadorCorrer;
                 }
                 

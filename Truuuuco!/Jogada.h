@@ -27,6 +27,7 @@ typedef enum ValorJogada{
 @property (nonatomic,assign) int trucante;
 @property (nonatomic,assign) bool hasToAceitarRecusarTruco;
 @property Mao *maoAtual;
+@property (nonatomic) int iValorJogada;
 
 -(instancetype)initWithBaralho:(Baralho*)pBaralho;
 -(int)jogarMao:(int)proximo andJogadores:(NSMutableArray*)jogadores;

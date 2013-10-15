@@ -12,8 +12,7 @@
 
 @interface Jogada()
 
-@property (nonatomic, weak) AppDelegate *app;
-@property (nonatomic) int iValorJogada;
+@property (nonatomic, strong) AppDelegate *app;
 
 @end
 @implementation Jogada
@@ -26,7 +25,8 @@
         self.vira = [pBaralho getCarta];
         self.trucante = -1;
         baralho = pBaralho;
-        self.iValorJogada = ValorJogadaTres;
+        self.iValorJogada = 1;
+        self.valorJogada = ValorJogadaHum;
     }
     return self;
 }
@@ -60,8 +60,10 @@
     
     //ver que equipe ganhou a mão
     NSLog(@"VENCEDOR: %u", self.maoAtual.vencedor);
+    NSLog(@"VALOR DA JOGADA: %u", self.valorJogada);
     
-    self.app.valorJogada = self.iValorJogada;
+    self.app.valorJogada = self.valorJogada;
+    self.iValorJogada = self.valorJogada;
 
     
     return self.maoAtual.vencedor;
