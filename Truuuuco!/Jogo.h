@@ -24,6 +24,7 @@
 
 @property(nonatomic, strong) Jogada *jogada;
 @property(nonatomic, weak) AppDelegate *app;
+@property(nonatomic) BOOL continueJogo;
 
 -(void)placarGeral;
 @end

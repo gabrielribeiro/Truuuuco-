@@ -13,7 +13,6 @@
 
 @interface Jogada()
 
-@property (nonatomic, strong) AppDelegate *app;
 @property (nonatomic, weak) Jogo *jogo;
 
 @end
