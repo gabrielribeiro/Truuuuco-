@@ -128,6 +128,9 @@
                         case ValorJogadaSeis:
                             jogada.ValorJogada = ValorJogadaDoze;
                             break;
+                        default:
+                            jogada.valorJogada = ValorJogadaTres;
+                            break;
                     }
                     
                     NSLog(@"%@ Aumentou!", self);
@@ -165,6 +168,8 @@
                 case ValorJogadaNove:
                     NSLog(@"3) Pedir Doze");
                     break;
+                default:
+                    break;
             }
         }
         
@@ -193,6 +198,8 @@
                     case ValorJogadaNove:
                         jogada.ValorJogada = ValorJogadaDoze;
                         break;
+                    case ValorJogadaDoze:
+                        NSLog(@"Nao é possivel aumentar");
                 }
                 jogada.hasToAceitarRecusarTruco = NO;
                 NSLog(@"%@ Aceitou!", self);
@@ -215,6 +222,9 @@
                         break;
                     case ValorJogadaSeis:
                         jogada.ValorJogada = ValorJogadaDoze;
+                        break;
+                    default:
+                        jogada.valorJogada = ValorJogadaDoze;
                         break;
                 }
                 
