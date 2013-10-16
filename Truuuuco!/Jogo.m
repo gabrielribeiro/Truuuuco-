@@ -9,6 +9,10 @@
 #import "Jogo.h"
 #import "Baralho.h"
 
+@interface Jogo()
+
+@end
+
 @implementation Jogo
 
 - (id)init
@@ -20,21 +24,56 @@
     return self;
 }
 
--(bool)isFinalizado
-{
-    return self.pTimeA >= 12 || self.pTimeB >= 12;
+-(void)placarGeral {
+    if(self.app.vencedorMao1 == self.app.vencedorMao2){
+        if(self.app.vencedorMao1 == 1)
+        {
+            NSLog(@"%u", self.jogada.valorJogada);
+            self.pTimeB = self.pTimeB + self.jogada.valorJogada;
+        }
+        else
+        {
+            NSLog(@"%u", self.jogada.valorJogada);
+            self.pTimeA += self.jogada.valorJogada;
+        }
+        NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.pTimeA, self.pTimeB);
+    }
+    if(!self.jogada.maoAtual.empatado)
+    {
+        if(self.app.vencedorMao3 == self.app.vencedorMao1)
+        {
+            if(self.app.vencedorMao1 == 1)
+            {
+                NSLog(@"%u", self.jogada.valorJogada);
+                self.pTimeB = self.pTimeB + self.jogada.iValorJogada;
+            }
+            else
+            {
+                NSLog(@"%u", self.jogada.valorJogada);
+                self.pTimeA += self.jogada.iValorJogada;
+            }
+        }
+        if(self.app.vencedorMao3 == self.app.vencedorMao2)
+        {
+            if(self.app.vencedorMao3 == 1)
+            {
+                NSLog(@"%u", self.jogada.valorJogada);
+                self.pTimeB = self.pTimeB + self.jogada.iValorJogada;
+            }
+            else
+            {
+                NSLog(@"%u", self.jogada.valorJogada);
+                self.pTimeA += self.jogada.iValorJogada;
+            }
+        }
+        NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.pTimeA, self.pTimeB);
+    }
+    
+    if (self.pTimeA >= 12 || self.pTimeB >= 12)
+    {
+        self.isFinalizado = YES;
+    }
+    
 }
-
-/*-(void)placarGeral {
-    NSLog(@"Placar Geral: \n Time A: %u \n Time B: %u \n", (self.pTimeA % 3), (self.pTimeB%3));
-    if(self.pTimeA % 3 == 12)
-    {
-        NSLog(@"DA GAEM HAS ENDED");
-    }
-    if(self.pTimeB % 3 == 12)
-    {
-        NSLog(@"DA GAME HAS ENDED, MON");
-    }
-}*/
 
 @end

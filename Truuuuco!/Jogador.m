@@ -8,11 +8,13 @@
 
 #import "Jogador.h"
 #import "Jogada.h"
+#import "Jogo.h"
 
 @interface Jogador() {
     int indexCarta;
 }
 @property (nonatomic, weak) Jogada *jogada;
+@property (nonatomic, weak) Jogo *jogo;
 
 @end
 
@@ -23,7 +25,7 @@
     self = [super init];
     if (self) {
         self.cartas = [[NSMutableArray alloc] init];
-        self.jogada = [[Jogada alloc] init];
+        self.jogada = self.jogo.jogada;
     }
     return self;
 }

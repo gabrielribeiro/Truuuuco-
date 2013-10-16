@@ -10,6 +10,7 @@
 
 #import "Jogada.h"
 #import "Jogador.h"
+#import "AppDelegate.h"
 
 @interface Jogo : NSObject
 
@@ -17,9 +18,12 @@
 @property (nonatomic,assign) NSUInteger pontuacaoTimeB;
 @property (nonatomic,assign) JogadorEnum proximoJogador;
 @property (nonatomic,strong) Baralho *baralho;
-@property (nonatomic,assign,getter = isFinalizado) bool finalizado;
+@property (nonatomic) BOOL isFinalizado;
 @property (nonatomic) int pTimeA;
 @property (nonatomic) int pTimeB;
+
+@property(nonatomic, strong) Jogada *jogada;
+@property(nonatomic, weak) AppDelegate *app;
 
 -(void)placarGeral;
 @end

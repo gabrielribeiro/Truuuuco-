@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) Jogada *jogada;
 
-@property (nonatomic) int valorJogada;
+@property (nonatomic) int vencedorMao1;
+@property (nonatomic) int vencedorMao2;
+@property (nonatomic) int vencedorMao3;
 
 @end

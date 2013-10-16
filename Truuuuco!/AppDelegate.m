@@ -28,8 +28,10 @@ static const int NUM_CARDS = 3;
     [self.window makeKeyAndVisible];
     
     self.jogo = [[Jogo alloc] init];
-    
-    self.valorJogada = self.jogada.iValorJogada;
+    self.jogo.app = self;
+    self.jogada = [[Jogada alloc] initWithBaralho:self.jogo.baralho];
+    self.jogo.jogada = self.jogada;
+
     
     Jogador *jogadorA = [[Jogador alloc] init];
     Jogador *jogadorB = [[Jogador alloc] init];
@@ -46,9 +48,9 @@ static const int NUM_CARDS = 3;
     self.jogo.proximoJogador = arc4random() %4;
     
     do{
-        Jogada *jogada = [[Jogada alloc] initWithBaralho:self.jogo.baralho];
+        //Jogada *jogada = [[Jogada alloc] initWithBaralho:self.jogo.baralho];
 
-        NSLog(@"VIRA: %@",jogada.vira);
+        NSLog(@"VIRA: %@",self.jogada.vira);
         
         for (Jogador *temp in jogadores) {
             for (int i=0; i < NUM_CARDS; i++) {
@@ -58,65 +60,22 @@ static const int NUM_CARDS = 3;
         }
         
         NSLog(@"===PRIMEIRA MÃO===");
-        
+        NSLog(@"VALOR JOGADA APP: %u", self.jogada.valorJogada);
         //Primeira Mão
-        int vencedorMao1 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+        self.vencedorMao1 = [self.jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
         
+        [self.jogo placarGeral];
         NSLog(@"===SEGUNDA MÃO===");
-        
+        NSLog(@"VALOR JOGADA APP: %u", self.jogada.valorJogada);
         //Segunda Mão
-        int vencedorMao2 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+        self.vencedorMao2 = [self.jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
         
-        if(vencedorMao1 == vencedorMao2){
-            if(vencedorMao1 == 1)
-            {
-                NSLog(@"%u", self.valorJogada);
-                self.jogo.pTimeB += self.valorJogada;
-            }
-            else
-            {
-                NSLog(@"%u", self.valorJogada);
-                self.jogo.pTimeA += self.valorJogada;
-            }
-            NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.jogo.pTimeA, self.jogo.pTimeB);
-            continue;
-        }
+        [self.jogo placarGeral];
+        NSLog(@"===TERCEIRA MÃO===");
+        NSLog(@"VALOR JOGADA APP: %u", self.jogada.valorJogada);
+        self.vencedorMao3 = [self.jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
         
-        if(!jogada.maoAtual.empatado)
-        {
-            NSLog(@"===TERCEIRA MÃO===");
-            int vencedorMao3 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
-
-            if(vencedorMao3 == vencedorMao1)
-            {
-                if(vencedorMao1 == 1)
-                {
-                    NSLog(@"%u", self.valorJogada);
-                    self.jogo.pTimeB += self.valorJogada;
-                }
-                else
-                {
-                    NSLog(@"%u", self.valorJogada);
-                    self.jogo.pTimeA += self.valorJogada;
-                }
-            }
-            if(vencedorMao3 == vencedorMao2)
-            {
-                if(vencedorMao3 == 1)
-                {
-                    NSLog(@"%u", self.valorJogada);
-                    self.jogo.pTimeB += self.valorJogada;
-                }
-                else
-                {
-                    NSLog(@"%u", self.valorJogada);
-                    self.jogo.pTimeA += self.valorJogada;
-                }
-            }
-            NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.jogo.pTimeA, self.jogo.pTimeB);
-        }
-        
-        //[self.jogo placarGeral];
+        [self.jogo placarGeral];
         
     }while (!self.jogo.isFinalizado);
     
