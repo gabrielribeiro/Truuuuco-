@@ -28,13 +28,10 @@ static const int NUM_CARDS = 3;
     [self.window makeKeyAndVisible];
     
     self.jogo = [[Jogo alloc] init];
-    self.jogo.app = self;
-    self.jogada = [[Jogada alloc] initWithBaralho:self.jogo.baralho];
-    self.jogo.jogada = self.jogada;
-    
-    self.vencedorMao3 = 2;
-    self.vencedorMao2 = 2;
-    self.vencedorMao1 = 2;
+
+    //self.vencedorMao3 = 2;
+    //self.vencedorMao2 = 2;
+    //self.vencedorMao1 = 2;
 
     
     Jogador *jogadorA = [[Jogador alloc] init];
@@ -52,9 +49,9 @@ static const int NUM_CARDS = 3;
     self.jogo.proximoJogador = arc4random() %4;
     
     do{
-        //Jogada *jogada = [[Jogada alloc] initWithBaralho:self.jogo.baralho];
+        Jogada *jogada = [[Jogada alloc] initWithBaralho:self.jogo.baralho];
 
-        NSLog(@"VIRA: %@",self.jogada.vira);
+        NSLog(@"VIRA: %@", jogada.vira);
         
         for (Jogador *temp in jogadores) {
             for (int i=0; i < NUM_CARDS; i++) {
@@ -64,30 +61,26 @@ static const int NUM_CARDS = 3;
         }
         
         NSLog(@"===PRIMEIRA MÃO===");
-        //Primeira Mão
-        self.vencedorMao1 = [self.jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
-        [self.jogo placarGeral];
+
+        TimeEnum vencedorMao1 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+        [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao1]];
         
         NSLog(@"===SEGUNDA MÃO===");
-        //Segunda Mão
-        self.vencedorMao2 = [self.jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
-        self.jogo.continueJogo = NO;
-        [self.jogo placarGeral];
-        if(self.jogo.continueJogo)
+
+        TimeEnum vencedorMao2 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+        [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao2]];
+        
+        if(vencedorMao1 == vencedorMao2)
         {
-            self.jogo.continueJogo = NO;
-            self.vencedorMao3 = 2;
-            self.vencedorMao2 = 2;
-            self.vencedorMao1 = 2;
+            [self.jogo atualizarPlacar:jogada];
             continue;
         }
+        
         NSLog(@"===TERCEIRA MÃO===");
-        self.vencedorMao3 = [self.jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
-        self.jogo.continueJogo = NO;
-        [self.jogo placarGeral];
-        self.vencedorMao3 = 2;
-        self.vencedorMao2 = 2;
-        self.vencedorMao1 = 2;
+        TimeEnum vencedorMao3 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+        [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao3]];
+        
+        [self.jogo atualizarPlacar:jogada];
         
     }while (!self.jogo.isFinalizado);
     

@@ -20,62 +20,52 @@
     self = [super init];
     if (self) {
         self.baralho = [[Baralho alloc] init];
-        self.continueJogo = NO;
+        self.pontuacaoTimeA = 0;
+        self.pontuacaoTimeB = 0;
     }
     return self;
 }
 
--(void)placarGeral {
-    [self FinishHim];
-    if(self.app.vencedorMao1 == self.app.vencedorMao2){
-        if(self.app.vencedorMao1 == 1)
-        {
-            self.pTimeB = self.pTimeB + self.jogada.valorJogada;
-        }
-        else if(self.app.vencedorMao1 == 0)
-        {
-            self.pTimeA += self.jogada.valorJogada;
-        }
-        self.continueJogo = YES;
-    }
-    if(!self.jogada.maoAtual.empatado)
-    {
-        [self FinishHim];
-        if(self.app.vencedorMao3 == self.app.vencedorMao1)
-        {
-            if(self.app.vencedorMao1 == 1)
-            {
-                self.pTimeB = self.pTimeB + self.jogada.valorJogada;
-            }
-            else if(self.app.vencedorMao1 == 0)
-            {
-                self.pTimeA += self.jogada.valorJogada;
-            }
-        }
-        [self FinishHim];
-        if(self.app.vencedorMao3 == self.app.vencedorMao2)
-        {
-            if(self.app.vencedorMao3 == 1)
-            {
-                self.pTimeB = self.pTimeB + self.jogada.valorJogada;
-            }
-            else if(self.app.vencedorMao3 == 0)
-            {
-                self.pTimeA += self.jogada.valorJogada;
-            }
-        }
-    }
-    NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.pTimeA, self.pTimeB);
-    [self FinishHim];
-    
+-(BOOL)isFinalizado
+{
+    return (self.pontuacaoTimeA >= 12 || self.pontuacaoTimeB >= 12);
 }
 
--(void)FinishHim
+-(void)atualizarPlacar:(Jogada*)jogada
 {
-    if (self.pTimeA >= 12 || self.pTimeB >= 12)
-    {
-        self.isFinalizado = YES;
+    TimeEnum vencedorPrimeira = ((NSNumber*)jogada.vencedores[0]).intValue;
+    TimeEnum vencedorSegunda = ((NSNumber*)jogada.vencedores[1]).intValue;
+    
+    if(vencedorPrimeira == vencedorSegunda){
+        
+        switch (vencedorPrimeira) {
+            case TimeA:
+                self.pontuacaoTimeA += jogada.valorJogada;
+                break;
+            case TimeB:
+                self.pontuacaoTimeB += jogada.valorJogada;
+                break;
+        }
     }
+    
+    NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.pontuacaoTimeA, self.pontuacaoTimeB);
+    return;
+    
+    TimeEnum vencedorTerceira = ((NSNumber*)jogada.vencedores[2]).intValue;
+    
+    if(!jogada.maoAtual.empatado)
+    {
+        switch (vencedorTerceira) {
+            case TimeA:
+                self.pontuacaoTimeA += jogada.valorJogada;
+                break;
+            case TimeB:
+                self.pontuacaoTimeB += jogada.valorJogada;
+                break;
+        }
+    }
+    
+    NSLog(@"Placar Parcial: \n Time A: %d \n Time B: %d", self.pontuacaoTimeA, self.pontuacaoTimeB);
 }
 
 @end

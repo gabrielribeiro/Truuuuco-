@@ -25,9 +25,8 @@
         self.vira = [pBaralho getCarta];
         self.trucante = -1;
         baralho = pBaralho;
-        self.iValorJogada = 1;
         self.valorJogada = ValorJogadaHum;
-        self.jogo.jogada = self;
+        self.vencedores = [[NSMutableArray alloc] init];
     }
     return self;
 }

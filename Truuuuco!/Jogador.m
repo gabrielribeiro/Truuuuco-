@@ -25,7 +25,6 @@
     self = [super init];
     if (self) {
         self.cartas = [[NSMutableArray alloc] init];
-        self.jogada = self.jogo.jogada;
     }
     return self;
 }
