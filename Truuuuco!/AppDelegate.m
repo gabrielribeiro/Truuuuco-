@@ -10,12 +10,6 @@
 #import "jogo.h"
 #import "Jogada.h"
 
-@interface AppDelegate()
-@property (nonatomic) int pTimeA;
-@property (nonatomic) int pTimeB;
-@property (nonatomic, strong) Jogo *jogo;
-@end
-
 @implementation AppDelegate
 
 static const int NUM_CARDS = 3;
@@ -27,12 +21,7 @@ static const int NUM_CARDS = 3;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.jogo = [[Jogo alloc] init];
-
-    //self.vencedorMao3 = 2;
-    //self.vencedorMao2 = 2;
-    //self.vencedorMao1 = 2;
-
+    Jogo *jogo = [[Jogo alloc] init];
     
     Jogador *jogadorA = [[Jogador alloc] init];
     Jogador *jogadorB = [[Jogador alloc] init];
@@ -46,43 +35,43 @@ static const int NUM_CARDS = 3;
     
     NSMutableArray *jogadores = [[NSMutableArray alloc] initWithObjects:jogadorA, jogadorB, jogadorC, jogadorD, nil];
     
-    self.jogo.proximoJogador = arc4random() %4;
+    jogo.proximoJogador = arc4random() %4;
     
     do{
-        Jogada *jogada = [[Jogada alloc] initWithBaralho:self.jogo.baralho];
+        Jogada *jogada = [[Jogada alloc] initWithBaralho:jogo.baralho];
 
         NSLog(@"VIRA: %@", jogada.vira);
         
         for (Jogador *temp in jogadores) {
             for (int i=0; i < NUM_CARDS; i++) {
-                Carta *carta = [self.jogo.baralho getCarta];
+                Carta *carta = [jogo.baralho getCarta];
                 [temp receberCarta:carta];
             }
         }
         
         NSLog(@"===PRIMEIRA MÃO===");
 
-        TimeEnum vencedorMao1 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+        TimeEnum vencedorMao1 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
         [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao1]];
         
         NSLog(@"===SEGUNDA MÃO===");
 
-        TimeEnum vencedorMao2 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+        TimeEnum vencedorMao2 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
         [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao2]];
         
         if(![jogada prosseguirParaTerceiraMao])
         {
-            [self.jogo atualizarPlacar:jogada];
+            [jogo atualizarPlacar:jogada];
             continue;
         }
         
         NSLog(@"===TERCEIRA MÃO===");
-        TimeEnum vencedorMao3 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
+        TimeEnum vencedorMao3 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
         [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao3]];
         
-        [self.jogo atualizarPlacar:jogada];
+        [jogo atualizarPlacar:jogada];
         
-    }while (!self.jogo.isFinalizado);
+    }while (!jogo.isFinalizado);
     
     return YES;
 }
