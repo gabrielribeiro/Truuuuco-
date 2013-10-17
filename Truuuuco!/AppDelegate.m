@@ -70,7 +70,7 @@ static const int NUM_CARDS = 3;
         TimeEnum vencedorMao2 = [jogada jogarMao:self.jogo.proximoJogador andJogadores:jogadores];
         [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao2]];
         
-        if(vencedorMao1 == vencedorMao2)
+        if(![jogada prosseguirParaTerceiraMao])
         {
             [self.jogo atualizarPlacar:jogada];
             continue;

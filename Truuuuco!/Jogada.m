@@ -8,14 +8,7 @@
 
 #import "Jogada.h"
 #import "Jogador.h"
-#import "AppDelegate.h"
-#import "Jogo.h"
 
-@interface Jogada()
-
-@property (nonatomic, weak) Jogo *jogo;
-
-@end
 @implementation Jogada
 
 -(instancetype)initWithBaralho:(Baralho*)pBaralho;
@@ -63,6 +56,14 @@
     NSLog(@"VALOR DA JOGADA: %u", self.valorJogada);
     
     return self.maoAtual.vencedor;
+}
+
+-(bool)prosseguirParaTerceiraMao
+{
+    TimeEnum vencedorPrimeira = ((NSNumber*)self.vencedores[0]).intValue;
+    TimeEnum vencedorSegunda = ((NSNumber*)self.vencedores[1]).intValue;
+    
+    return vencedorPrimeira != vencedorSegunda;
 }
 
 @end

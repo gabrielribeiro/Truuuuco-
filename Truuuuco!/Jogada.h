@@ -31,6 +31,6 @@ typedef enum ValorJogada{
 
 -(instancetype)initWithBaralho:(Baralho*)pBaralho;
 -(int)jogarMao:(int)proximo andJogadores:(NSMutableArray*)jogadores;
--(int)getPontuacao;
+-(bool)prosseguirParaTerceiraMao;
 
 @end
