@@ -9,30 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
 
-@interface MesaViewController : UIViewController{
-    double currentMaxAccelX;
-    double currentMaxAccelY;
-    double currentMaxAccelZ;
-    double currentMaxRotX;
-    double currentMaxRotY;
-    double currentMaxRotZ;
-}
+@interface MesaViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UILabel *accX;
-@property (strong, nonatomic) IBOutlet UILabel *accY;
-@property (strong, nonatomic) IBOutlet UILabel *accZ;
+@property (nonatomic,weak) IBOutlet UIImageView *jogadorACarta1, *jogadorACarta2, *jogadorACarta3;
+@property (nonatomic,weak) IBOutlet UIImageView *jogadorBCarta1, *jogadorBCarta2, *jogadorBCarta3;
+@property (nonatomic,weak) IBOutlet UIImageView *jogadorCCarta1, *jogadorCCarta2, *jogadorCCarta3;
+@property (nonatomic,weak) IBOutlet UIImageView *jogadorDCarta1, *jogadorDCarta2, *jogadorDCarta3;
 
-@property (strong, nonatomic) IBOutlet UILabel *maxAccX;
-@property (strong, nonatomic) IBOutlet UILabel *maxAccY;
-@property (strong, nonatomic) IBOutlet UILabel *maxAccZ;
-
-@property (strong, nonatomic) IBOutlet UILabel *rotX;
-@property (strong, nonatomic) IBOutlet UILabel *rotY;
-@property (strong, nonatomic) IBOutlet UILabel *rotZ;
-
-@property (strong, nonatomic) IBOutlet UILabel *maxRotX;
-@property (strong, nonatomic) IBOutlet UILabel *maxRotY;
-@property (strong, nonatomic) IBOutlet UILabel *maxRotZ;
+@property (nonatomic,weak) IBOutlet UIImageView *vira;
 
 @property (nonatomic,strong) CMMotionManager *motionManager;
 

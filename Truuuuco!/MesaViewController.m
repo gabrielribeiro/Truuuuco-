@@ -7,8 +7,14 @@
 //
 
 #import "MesaViewController.h"
+#import "jogo.h"
+#import "Jogada.h"
 
-@interface MesaViewController ()
+static const int NUM_CARDS = 3;
+
+@interface MesaViewController(){
+    NSArray *cartasJogadorA, *cartasJogadorB, *cartasJogadorC, *cartasJogadorD;
+}
 
 @end
 
@@ -23,18 +29,102 @@
     return self;
 }
 
+- (void)runGame
+{
+    Jogo *jogo = [[Jogo alloc] init];
+    
+    Jogador *jogadorA = [[Jogador alloc] init];
+    Jogador *jogadorB = [[Jogador alloc] init];
+    Jogador *jogadorC = [[Jogador alloc] init];
+    Jogador *jogadorD = [[Jogador alloc] init];
+    
+    jogadorA.tipo = JogadorA;
+    jogadorB.tipo = JogadorB;
+    jogadorC.tipo = JogadorC;
+    jogadorD.tipo = JogadorD;
+    
+    NSMutableArray *jogadores = [[NSMutableArray alloc] initWithObjects:jogadorA, jogadorB, jogadorC, jogadorD, nil];
+    
+    jogo.proximoJogador = arc4random() %4;
+    
+    do{
+        Jogada *jogada = [[Jogada alloc] initWithBaralho:jogo.baralho];
+        
+        NSLog(@"VIRA: %@", jogada.vira);
+        
+        for (Jogador *temp in jogadores) {
+            for (int i=0; i < NUM_CARDS; i++) {
+                Carta *carta = [jogo.baralho getCarta];
+                [temp receberCarta:carta];
+            }
+        }
+        
+        NSLog(@"===PRIMEIRA MÃO===");
+        
+        TimeEnum vencedorMao1 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao1]];
+        
+        NSLog(@"===SEGUNDA MÃO===");
+        
+        TimeEnum vencedorMao2 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao2]];
+        
+        if(![jogada prosseguirParaTerceiraMao])
+        {
+            [jogo atualizarPlacar:jogada];
+            continue;
+        }
+        
+        NSLog(@"===TERCEIRA MÃO===");
+        TimeEnum vencedorMao3 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
+        [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao3]];
+        
+        [jogo atualizarPlacar:jogada];
+        
+    }while (!jogo.isFinalizado);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    currentMaxAccelX = 0;
-    currentMaxAccelY = 0;
-    currentMaxAccelZ = 0;
+    cartasJogadorA = @[self.jogadorACarta1, self.jogadorACarta2, self.jogadorACarta3];
+    cartasJogadorB = @[self.jogadorBCarta1, self.jogadorBCarta2, self.jogadorBCarta3];
+    cartasJogadorC = @[self.jogadorCCarta1, self.jogadorCCarta2, self.jogadorCCarta3];
+    cartasJogadorD = @[self.jogadorDCarta1, self.jogadorDCarta2, self.jogadorDCarta3];
     
-    currentMaxRotX = 0;
-    currentMaxRotY = 0;
-    currentMaxRotZ = 0;
+    
+    UIImage *backImage = [UIImage imageNamed:@"back"];
+    
+    for (UIImageView *cartaImageView in cartasJogadorA) {
+        CGImageRef backImageRef = [self CGImageRotatedByAngle:[backImage CGImage] angle:180];
+        
+        UIImage* img = [UIImage imageWithCGImage:backImageRef];
+        cartaImageView.image = img;
+    }
+    
+    for (UIImageView *cartaImageView in cartasJogadorB) {
+        CGImageRef backImageRef = [self CGImageRotatedByAngle:[backImage CGImage] angle:90];
+        
+        UIImage* img = [UIImage imageWithCGImage:backImageRef];
+        cartaImageView.image = img;
+    }
+    
+    for (UIImageView *cartaImageView in cartasJogadorC) {
+        CGImageRef backImageRef = [self CGImageRotatedByAngle:[backImage CGImage] angle:0];
+        
+        UIImage* img = [UIImage imageWithCGImage:backImageRef];
+        cartaImageView.image = img;
+    }
+    
+    for (UIImageView *cartaImageView in cartasJogadorD) {
+        CGImageRef backImageRef = [self CGImageRotatedByAngle:[backImage CGImage] angle:270];
+        
+        UIImage* img = [UIImage imageWithCGImage:backImageRef];
+        cartaImageView.image = img;
+    }
+    
     
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.accelerometerUpdateInterval = 0.2;
@@ -55,60 +145,105 @@
                                     }];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 -(void)outputAccelertionData:(CMAcceleration)acceleration
 {
-    
-    
-    
-    self.accX.text = [NSString stringWithFormat:@" %.2fg",acceleration.x];
+    /*
+    self.accX.text = [NSString stringWithFormat:@"Acceleration in X: %.2fg",acceleration.x];
     if(fabs(acceleration.x) > fabs(currentMaxAccelX))
     {
         currentMaxAccelX = acceleration.x;
     }
-    self.accY.text = [NSString stringWithFormat:@" %.2fg",acceleration.y];
+    self.accY.text = [NSString stringWithFormat:@"Acceleration in Y: %.2fg",acceleration.y];
     if(fabs(acceleration.y) > fabs(currentMaxAccelY))
     {
         currentMaxAccelY = acceleration.y;
     }
-    self.accZ.text = [NSString stringWithFormat:@" %.2fg",acceleration.z];
+    self.accZ.text = [NSString stringWithFormat:@"Acceleration in Z: %.2fg",acceleration.z];
     if(fabs(acceleration.z) > fabs(currentMaxAccelZ))
     {
         currentMaxAccelZ = acceleration.z;
     }
     
-    self.maxAccX.text = [NSString stringWithFormat:@" %.2f",currentMaxAccelX];
-    self.maxAccY.text = [NSString stringWithFormat:@" %.2f",currentMaxAccelY];
-    self.maxAccZ.text = [NSString stringWithFormat:@" %.2f",currentMaxAccelZ];
-    
-    
+    self.maxAccX.text = [NSString stringWithFormat:@"Max Acceleration in X: %.2f",currentMaxAccelX];
+    self.maxAccY.text = [NSString stringWithFormat:@"Max Acceleration in Y: %.2f",currentMaxAccelY];
+    self.maxAccZ.text = [NSString stringWithFormat:@"Max Acceleration in Z: %.2f",currentMaxAccelZ];
+    */
 }
+
 -(void)outputRotationData:(CMRotationRate)rotation
 {
-    
-    self.rotX.text = [NSString stringWithFormat:@" %.2fr/s",rotation.x];
+    /*
+    self.rotX.text = [NSString stringWithFormat:@"Rotation about X: %.2fr/s",rotation.x];
     if(fabs(rotation.x) > fabs(currentMaxRotX))
     {
         currentMaxRotX = rotation.x;
     }
-    self.rotY.text = [NSString stringWithFormat:@" %.2fr/s",rotation.y];
+    self.rotY.text = [NSString stringWithFormat:@"Rotation about Y: %.2fr/s",rotation.y];
     if(fabs(rotation.y) > fabs(currentMaxRotY))
     {
         currentMaxRotY = rotation.y;
     }
-    self.rotZ.text = [NSString stringWithFormat:@" %.2fr/s",rotation.z];
+    self.rotZ.text = [NSString stringWithFormat:@"Rotation about Z: %.2fr/s",rotation.z];
     if(fabs(rotation.z) > fabs(currentMaxRotZ))
     {
         currentMaxRotZ = rotation.z;
     }
     
-    self.maxRotX.text = [NSString stringWithFormat:@" %.2f",currentMaxRotX];
-    self.maxRotY.text = [NSString stringWithFormat:@" %.2f",currentMaxRotY];
-    self.maxRotZ.text = [NSString stringWithFormat:@" %.2f",currentMaxRotZ];
+    self.maxRotX.text = [NSString stringWithFormat:@"Max Rotation about X: %.2f",currentMaxRotX];
+    self.maxRotY.text = [NSString stringWithFormat:@"Max Rotation about Y: %.2f",currentMaxRotY];
+    self.maxRotZ.text = [NSString stringWithFormat:@"Max Rotation about Z: %.2f",currentMaxRotZ];
+    */
 }
-- (void)didReceiveMemoryWarning
+
+- (CGImageRef)CGImageRotatedByAngle:(CGImageRef)imgRef angle:(CGFloat)angle
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    CGFloat angleInRadians = angle * (M_PI / 180);
+    CGFloat width = CGImageGetWidth(imgRef);
+    CGFloat height = CGImageGetHeight(imgRef);
+    
+    CGRect imgRect = CGRectMake(0, 0, width, height);
+    CGAffineTransform transform = CGAffineTransformMakeRotation(angleInRadians);
+    CGRect rotatedRect = CGRectApplyAffineTransform(imgRect, transform);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    CGContextRef bmContext = CGBitmapContextCreate(NULL,
+                                                   rotatedRect.size.width,
+                                                   rotatedRect.size.height,
+                                                   8,
+                                                   0,
+                                                   colorSpace,
+                                                   kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
+    
+    CGContextSetAllowsAntialiasing(bmContext, YES);
+    CGContextSetShouldAntialias(bmContext, YES);
+    CGContextSetInterpolationQuality(bmContext, kCGInterpolationHigh);
+    CGColorSpaceRelease(colorSpace);
+    CGContextTranslateCTM(bmContext,
+                          +(rotatedRect.size.width/2),
+                          +(rotatedRect.size.height/2));
+    CGContextRotateCTM(bmContext, angleInRadians);
+    CGContextTranslateCTM(bmContext,
+                          -(rotatedRect.size.width/2),
+                          -(rotatedRect.size.height/2));
+    CGContextDrawImage(bmContext, CGRectMake(0, 0,
+                                             rotatedRect.size.width,
+                                             rotatedRect.size.height),
+                       imgRef);
+    
+    
+    
+    CGImageRef rotatedImage = CGBitmapContextCreateImage(bmContext);
+    CFRelease(bmContext);
+    
+    return rotatedImage;
 }
 
 @end

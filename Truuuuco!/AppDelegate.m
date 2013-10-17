@@ -7,12 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "jogo.h"
-#import "Jogada.h"
+#import "MesaViewController.h"
 
 @implementation AppDelegate
-
-static const int NUM_CARDS = 3;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -21,57 +18,7 @@ static const int NUM_CARDS = 3;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    Jogo *jogo = [[Jogo alloc] init];
-    
-    Jogador *jogadorA = [[Jogador alloc] init];
-    Jogador *jogadorB = [[Jogador alloc] init];
-    Jogador *jogadorC = [[Jogador alloc] init];
-    Jogador *jogadorD = [[Jogador alloc] init];
-    
-    jogadorA.tipo = JogadorA;
-    jogadorB.tipo = JogadorB;
-    jogadorC.tipo = JogadorC;
-    jogadorD.tipo = JogadorD;
-    
-    NSMutableArray *jogadores = [[NSMutableArray alloc] initWithObjects:jogadorA, jogadorB, jogadorC, jogadorD, nil];
-    
-    jogo.proximoJogador = arc4random() %4;
-    
-    do{
-        Jogada *jogada = [[Jogada alloc] initWithBaralho:jogo.baralho];
-
-        NSLog(@"VIRA: %@", jogada.vira);
-        
-        for (Jogador *temp in jogadores) {
-            for (int i=0; i < NUM_CARDS; i++) {
-                Carta *carta = [jogo.baralho getCarta];
-                [temp receberCarta:carta];
-            }
-        }
-        
-        NSLog(@"===PRIMEIRA MÃO===");
-
-        TimeEnum vencedorMao1 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
-        [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao1]];
-        
-        NSLog(@"===SEGUNDA MÃO===");
-
-        TimeEnum vencedorMao2 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
-        [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao2]];
-        
-        if(![jogada prosseguirParaTerceiraMao])
-        {
-            [jogo atualizarPlacar:jogada];
-            continue;
-        }
-        
-        NSLog(@"===TERCEIRA MÃO===");
-        TimeEnum vencedorMao3 = [jogada jogarMao:jogo.proximoJogador andJogadores:jogadores];
-        [jogada.vencedores addObject:[NSNumber numberWithInt:vencedorMao3]];
-        
-        [jogo atualizarPlacar:jogada];
-        
-    }while (!jogo.isFinalizado);
+    self.window.rootViewController = [[MesaViewController alloc] initWithNibName:@"MesaViewController" bundle:nil];
     
     return YES;
 }
