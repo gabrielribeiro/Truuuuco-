@@ -98,31 +98,19 @@ static const int NUM_CARDS = 3;
     UIImage *backImage = [UIImage imageNamed:@"back"];
     
     for (UIImageView *cartaImageView in cartasJogadorA) {
-        CGImageRef backImageRef = [self CGImageRotatedByAngle:[backImage CGImage] angle:180];
-        
-        UIImage* img = [UIImage imageWithCGImage:backImageRef];
-        cartaImageView.image = img;
+        cartaImageView.image = backImage;
     }
     
     for (UIImageView *cartaImageView in cartasJogadorB) {
-        CGImageRef backImageRef = [self CGImageRotatedByAngle:[backImage CGImage] angle:90];
-        
-        UIImage* img = [UIImage imageWithCGImage:backImageRef];
-        cartaImageView.image = img;
+        cartaImageView.image = backImage;
     }
     
     for (UIImageView *cartaImageView in cartasJogadorC) {
-        CGImageRef backImageRef = [self CGImageRotatedByAngle:[backImage CGImage] angle:0];
-        
-        UIImage* img = [UIImage imageWithCGImage:backImageRef];
-        cartaImageView.image = img;
+        cartaImageView.image = backImage;
     }
     
     for (UIImageView *cartaImageView in cartasJogadorD) {
-        CGImageRef backImageRef = [self CGImageRotatedByAngle:[backImage CGImage] angle:270];
-        
-        UIImage* img = [UIImage imageWithCGImage:backImageRef];
-        cartaImageView.image = img;
+        cartaImageView.image = backImage;
     }
     
     
@@ -199,51 +187,6 @@ static const int NUM_CARDS = 3;
     self.maxRotY.text = [NSString stringWithFormat:@"Max Rotation about Y: %.2f",currentMaxRotY];
     self.maxRotZ.text = [NSString stringWithFormat:@"Max Rotation about Z: %.2f",currentMaxRotZ];
     */
-}
-
-- (CGImageRef)CGImageRotatedByAngle:(CGImageRef)imgRef angle:(CGFloat)angle
-{
-    
-    CGFloat angleInRadians = angle * (M_PI / 180);
-    CGFloat width = CGImageGetWidth(imgRef);
-    CGFloat height = CGImageGetHeight(imgRef);
-    
-    CGRect imgRect = CGRectMake(0, 0, width, height);
-    CGAffineTransform transform = CGAffineTransformMakeRotation(angleInRadians);
-    CGRect rotatedRect = CGRectApplyAffineTransform(imgRect, transform);
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    CGContextRef bmContext = CGBitmapContextCreate(NULL,
-                                                   rotatedRect.size.width,
-                                                   rotatedRect.size.height,
-                                                   8,
-                                                   0,
-                                                   colorSpace,
-                                                   kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
-    
-    CGContextSetAllowsAntialiasing(bmContext, YES);
-    CGContextSetShouldAntialias(bmContext, YES);
-    CGContextSetInterpolationQuality(bmContext, kCGInterpolationHigh);
-    CGColorSpaceRelease(colorSpace);
-    CGContextTranslateCTM(bmContext,
-                          +(rotatedRect.size.width/2),
-                          +(rotatedRect.size.height/2));
-    CGContextRotateCTM(bmContext, angleInRadians);
-    CGContextTranslateCTM(bmContext,
-                          -(rotatedRect.size.width/2),
-                          -(rotatedRect.size.height/2));
-    CGContextDrawImage(bmContext, CGRectMake(0, 0,
-                                             rotatedRect.size.width,
-                                             rotatedRect.size.height),
-                       imgRef);
-    
-    
-    
-    CGImageRef rotatedImage = CGBitmapContextCreateImage(bmContext);
-    CFRelease(bmContext);
-    
-    return rotatedImage;
 }
 
 @end
